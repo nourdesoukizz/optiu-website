@@ -1,0 +1,13 @@
+.git
+.gitignore
+README.md
+Dockerfile
+.dockerignore
+.env
+*.log
+*.md
+node_modules
+.DS_Store
+marketplace_backup.html
+api/
+railway.json
