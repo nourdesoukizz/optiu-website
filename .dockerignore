@@ -5,9 +5,8 @@ Dockerfile
 .dockerignore
 .env
 *.log
-*.md
+DEPLOYMENT.md
 node_modules
 .DS_Store
 marketplace_backup.html
 api/
-railway.json
