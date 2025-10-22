@@ -12,6 +12,7 @@
         }
 
         body {
+            padding-bottom: 120px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #F0F5FA;
             line-height: 1.6;
@@ -19,14 +20,13 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 0 40px;
-            height: 70px;
-            display: flex;
+            background: white;
+            padding: 0 60px;
+            height: 64px;
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
             align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -40,6 +40,7 @@
         nav {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 40px;
         }
 
@@ -59,20 +60,44 @@
             color: #0078FF;
         }
 
+        .header-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .dark-mode-toggle {
+            background: transparent;
+            border: none;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            font-size: 20px;
+            padding: 0;
+        }
+
+        .dark-mode-toggle:hover {
+            opacity: 0.7;
+        }
+
         .chat-button {
             background: #0078FF;
             color: white;
-            padding: 10px 24px;
-            border-radius: 8px;
+            padding: 8px 20px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease, transform 0.2s ease;
-            margin-left: 20px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s ease;
         }
 
         .chat-button:hover {
             background: #0066DD;
-            transform: translateY(-2px);
             color: white;
         }
 
@@ -384,8 +409,8 @@
         }
 
         .opti-message {
-            background: #EBE8F5;
-            color: #1A1A1A;
+            background: #E8F5E8;
+            color: #000000;
             margin-right: 80px;
         }
 
@@ -397,239 +422,163 @@
         }
 
         .how-it-works {
-            padding: 20px 0;
+            padding: 60px 0;
         }
 
-        .steps-grid {
+        .steps-grid-new {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .step {
-            background: #F0F5FA;
-            border-radius: 20px;
-            padding: 40px 24px;
-            box-shadow: 0 8px 40px rgba(0, 120, 255, 0.08);
-            border: 1px solid rgba(0, 120, 255, 0.1);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            place-content: center;
-            place-items: center;
-        }
-
-        .step::before {
-            content: '';
-            position: absolute;
-            width: 100px;
-            background-image: linear-gradient(180deg, #0078FF, #4FC3F7);
-            height: 130%;
-            animation: rotBGimg 3s linear infinite;
-            transition: all 0.2s linear;
-        }
-
-        .step::after {
-            content: '';
-            position: absolute;
-            background: #F0F5FA;
-            inset: 5px;
-            border-radius: 15px;
-        }
-
-
-        .step:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(0, 120, 255, 0.15);
-            border-color: rgba(79, 195, 247, 0.3);
-        }
-
-
-        .step-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-number {
-            font-size: 28px;
-            font-weight: 800;
-            color: #4FC3F7;
-            min-width: 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-icon {
-            font-size: 32px;
-            padding: 12px;
-            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
-            border-radius: 16px;
-            border: 2px solid rgba(79, 195, 247, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .step:hover .step-icon {
-            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
-            transform: scale(1.1);
-            border-color: rgba(79, 195, 247, 0.4);
-        }
-
-        .step-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #1A1A1A;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-description {
-            color: #4A5568;
-            font-size: 15px;
-            line-height: 1.6;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (max-width: 1200px) {
-            .steps-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 32px;
-            }
-        }
-
-        @keyframes rotBGimg {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .steps-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-            
-            .step {
-                padding: 32px 20px;
-            }
-        }
-
-        .users-section {
-            padding: 20px 0;
-        }
-
-        .users-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 32px;
             margin-top: 48px;
         }
 
-        .user-type {
-            background: #F0F5FA;
+        .step-new {
+            background: white;
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s ease;
+            text-align: left;
+            position: relative;
+        }
+
+        .step-new:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-color: #D1D5DB;
+        }
+
+        .step-number-new {
+            font-size: 48px;
+            font-weight: 300;
+            color: #BFDBFE;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .step-icon-new {
+            color: #0078FF;
+            margin-bottom: 20px;
+        }
+
+        .step-icon-new svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .step-title-new {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1F2937;
+            line-height: 1.4;
+        }
+
+        .step-description-new {
+            color: #6B7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1200px) {
+            .steps-grid-new {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .steps-grid-new {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .step-new {
+                padding: 24px 20px;
+            }
+
+            .step-number-new {
+                font-size: 36px;
+            }
+            
+            .users-grid-new {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .user-type-new {
+                padding: 32px 24px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .users-grid-new {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .users-section-new {
+            padding: 60px 0;
+        }
+
+        .users-grid-new {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .user-type-new {
+            background: white;
             text-align: center;
             padding: 40px 32px;
             border-radius: 16px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid #E2E8F0;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            place-content: center;
-            place-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #E5E7EB;
         }
 
-        .user-type::before {
-            content: '';
-            position: absolute;
-            width: 100px;
-            background-image: linear-gradient(180deg, #0078FF, #0066DD);
-            height: 130%;
-            animation: rotBGimg 3s linear infinite;
-            transition: all 0.2s linear;
-        }
-
-        .user-type::after {
-            content: '';
-            position: absolute;
-            background: #F0F5FA;
-            inset: 5px;
-            border-radius: 11px;
-        }
-
-        .user-type:hover {
+        .user-type-new:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            border-color: #0078FF;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-color: #D1D5DB;
         }
 
-        .user-type-icon {
-            font-size: 48px;
-            margin: 0 auto 24px;
-            display: block;
-            text-align: center;
+        .user-icon-new {
             color: #0078FF;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: center;
         }
 
-        .user-type-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #0078FF;
-            position: relative;
-            z-index: 1;
+        .user-icon-new svg {
+            width: 32px;
+            height: 32px;
         }
 
-        .user-type-subtitle {
+        .user-type-title-new {
             font-size: 18px;
             font-weight: 600;
-            margin-bottom: 20px;
-            color: #1A1A1A;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 8px;
+            color: #1F2937;
         }
 
-        .user-type-description {
-            color: #4A5568;
-            font-size: 16px;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
+        .user-type-subtitle-new {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: #6B7280;
         }
 
-        .user-type-badge {
-            display: inline-block;
-            background: rgba(0, 120, 255, 0.1);
-            color: #0078FF;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 16px;
+        .user-type-description-new {
+            color: #6B7280;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         .pricing-section {
@@ -787,6 +736,54 @@
             color: white;
         }
 
+        .cta-section {
+            background: #0078FF;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .cta-description {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0078FF;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background: #F8FAFC;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            color: #0078FF;
+        }
+
         @media (max-width: 1024px) {
             .pricing-grid {
                 grid-template-columns: 1fr;
@@ -804,6 +801,9 @@
         }
 
         footer {
+            position: sticky;
+            bottom: 0;
+            z-index: 50;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -940,8 +940,26 @@
             .footer-container {
                 padding: 0 20px;
             }
+
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .cta-description {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 15px;
+            }
         }
     </style>
+    <link rel="stylesheet" href="css/opti-chatbot.css">
 </head>
 <body>
     <header>
@@ -950,10 +968,17 @@
             <a href="landing-page.html">Home</a>
             <a href="opti.html" class="active">Opti</a>
             <a href="marketplace.html">Marketplace</a>
-            <a href="#">AOM Adoption</a>
-            <a href="#">Pricing</a>
-            <a href="chat.html" class="chat-button">Chat with RLA</a>
+            <a href="aom-adoption.html">AOM Adoption</a>
+            <a href="pricing.html">Pricing</a>
         </nav>
+        <div class="header-right">
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <a href="chat.html" class="chat-button">Try Opti!</a>
+        </div>
     </header>
 
     <main>
@@ -968,8 +993,13 @@
                 </p>
                 
                 <div class="cta-buttons">
-                    <div class="hero-coming-soon-badge">
-                        <span class="badge-text">Coming soon</span>
+                    <a href="chat.html" class="btn-primary">Try Opti</a>
+                    <a href="demo.html" class="btn-secondary">Explainer</a>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <div class="hero-coming-soon-badge" style="background: #DC2626; font-size: 20px; padding: 16px 32px;">
+                        <span class="badge-text">Coming Soon</span>
                     </div>
                 </div>
             </div>
@@ -985,25 +1015,23 @@
                 <div class="conversation-demo">
                     <div class="chat-message">
                         <div class="message-label">You:</div>
-                        <div class="user-message">
-                            "Optimize my vendor mix under $2M budget"
+                        <div style="display: flex; justify-content: flex-end;">
+                            <div style="background: #E3F2FD; padding: 24px 32px; border-radius: 20px; margin-bottom: 16px; font-size: 18px; color: #1A1A1A; max-width: calc(100% - 80px);">
+                                "Optimize my vendor mix under $2M budget"
+                            </div>
                         </div>
                     </div>
 
                     <div class="chat-message">
                         <div class="message-label">Opti:</div>
-                        <div class="opti-message">
-                            Returns optimal vendor allocation with cost breakdown, risk analysis, and clear explanation of why each decision was made.
+                        <div style="display: flex; justify-content: flex-start;">
+                            <div style="background: #E8F5E8; padding: 24px 32px; border-radius: 20px; margin-bottom: 16px; font-size: 18px; color: black; max-width: calc(100% - 80px);">
+                                Based on your $2M budget, I recommend: 60% Vendor A ($1.2M), 30% Vendor B ($600K), 10% Vendor C ($200K). This allocation maximizes cost efficiency while minimizing supply chain risk.
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="rla-chat-section">
-                    <p class="rla-description">
-                        Ask all your questions to RLA to understand how Opti works and explore optimization possibilities for your specific use case.
-                    </p>
-                    <a href="chat.html" class="btn-rla-chat">Chat with RLA</a>
-                </div>
             </div>
         </section>
 
@@ -1012,43 +1040,59 @@
                 <div class="how-it-works">
                     <h2 class="section-title">How It Works</h2>
                     
-                    <div class="steps-grid">
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">01</div>
+                    <div class="steps-grid-new">
+                        <div class="step-new">
+                            <div class="step-number-new">01</div>
+                            <div class="step-icon-new">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg>
                             </div>
-                            <h3 class="step-title">Describe Your Problem</h3>
-                            <p class="step-description">
+                            <h3 class="step-title-new">Describe Your Problem</h3>
+                            <p class="step-description-new">
                                 Use natural language to explain what you want to optimize. Upload your Excel data or connect to your systems.
                             </p>
                         </div>
 
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">02</div>
+                        <div class="step-new">
+                            <div class="step-number-new">02</div>
+                            <div class="step-icon-new">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
+                                </svg>
                             </div>
-                            <h3 class="step-title">Opti Selects the Right AOM</h3>
-                            <p class="step-description">
+                            <h3 class="step-title-new">Opti Selects the Right AOM</h3>
+                            <p class="step-description-new">
                                 Our AI automatically identifies the best optimization model for your specific challenge.
                             </p>
                         </div>
 
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">03</div>
+                        <div class="step-new">
+                            <div class="step-number-new">03</div>
+                            <div class="step-icon-new">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 12l2 2 4-4"></path>
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                </svg>
                             </div>
-                            <h3 class="step-title">Get Optimal Plans</h3>
-                            <p class="step-description">
+                            <h3 class="step-title-new">Get Optimal Plans</h3>
+                            <p class="step-description-new">
                                 Receive explainable, optimal decisions with clear rationale, confidence scores, and alerts.
                             </p>
                         </div>
 
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">04</div>
+                        <div class="step-new">
+                            <div class="step-number-new">04</div>
+                            <div class="step-icon-new">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
                             </div>
-                            <h3 class="step-title">Export & Integrate</h3>
-                            <p class="step-description">
+                            <h3 class="step-title-new">Export & Integrate</h3>
+                            <p class="step-description-new">
                                 Download results to Excel or integrate directly with your ERP, CRM, or other systems.
                             </p>
                         </div>
@@ -1059,34 +1103,73 @@
 
         <section class="section">
             <div class="container">
-                <div class="users-section">
+                <div class="users-section-new">
                     <h2 class="section-title">Who Uses Opti?</h2>
                     
-                    <div class="users-grid">
-                        <div class="user-type">
-                            <h3 class="user-type-title">Individuals</h3>
-                            <h4 class="user-type-subtitle">Life Optimizer</h4>
-                            <p class="user-type-description">
+                    <div class="users-grid-new">
+                        <div class="user-type-new">
+                            <div class="user-icon-new">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <h3 class="user-type-title-new">Individuals</h3>
+                            <h4 class="user-type-subtitle-new">Life Optimizer</h4>
+                            <p class="user-type-description-new">
                                 Personal finance, scheduling, resource allocation
                             </p>
                         </div>
 
-                        <div class="user-type">
-                            <h3 class="user-type-title">Professionals</h3>
-                            <h4 class="user-type-subtitle">FP&A, Logistics, Procurement</h4>
-                            <p class="user-type-description">
+                        <div class="user-type-new">
+                            <div class="user-icon-new">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <h3 class="user-type-title-new">Professionals</h3>
+                            <h4 class="user-type-subtitle-new">FP&A, Logistics, Procurement</h4>
+                            <p class="user-type-description-new">
                                 Budget optimization, route planning, vendor selection
                             </p>
                         </div>
 
-                        <div class="user-type">
-                            <h3 class="user-type-title">Enterprises</h3>
-                            <h4 class="user-type-subtitle">Connect via Azure</h4>
-                            <p class="user-type-description">
+                        <div class="user-type-new">
+                            <div class="user-icon-new">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14,2 14,8 20,8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10,9 9,9 8,9"></polyline>
+                                </svg>
+                            </div>
+                            <h3 class="user-type-title-new">Enterprises</h3>
+                            <h4 class="user-type-subtitle-new">Connect via Azure</h4>
+                            <p class="user-type-description-new">
                                 Supply chain, manufacturing, distribution networks
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">From Data to Decisions in Seconds</h2>
+                    <p class="cta-description">
+                        Be among the first to experience Opti when we launch. Join our exclusive waitlist today.
+                    </p>
+                    <a href="waitlist.html" class="cta-button">
+                        Join the Waitlist
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1244,5 +1327,20 @@
         </div>
     </footer>
 
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Check for saved dark mode preference on load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+    <script src="js/opti-chatbot.js"></script>
 </body>
 </html>

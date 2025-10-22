@@ -12,6 +12,7 @@
         }
 
         body {
+            padding-bottom: 120px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #F8FAFC 0%, #EBF8FF 100%);
             line-height: 1.6;
@@ -20,61 +21,154 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 0 40px;
-            height: 70px;
-            display: flex;
+            background: white;
+            padding: 0 60px;
+            height: 64px;
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
             align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .header-logo {
-            height: 40px;
+            height: 32px;
             width: auto;
         }
 
         nav {
             display: flex;
             align-items: center;
-            gap: 40px;
+            justify-content: center;
+            gap: 48px;
         }
 
         nav a {
             text-decoration: none;
-            color: #4A5568;
-            font-size: 16px;
+            color: #1F2937;
+            font-size: 15px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
+            position: relative;
         }
 
         nav a:hover {
-            color: #0078FF;
+            color: #0066DD;
         }
 
         nav a.active {
-            color: #0078FF;
+            color: #0066DD;
+            font-weight: 600;
+        }
+
+        .header-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .dark-mode-toggle {
+            background: transparent;
+            border: none;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            font-size: 20px;
+            padding: 0;
+        }
+
+        .dark-mode-toggle:hover {
+            opacity: 0.7;
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            color: #9CA3AF;
         }
 
         .chat-button {
-            background: #0078FF;
+            background: #0066DD;
             color: white;
-            padding: 10px 24px;
-            border-radius: 8px;
+            padding: 8px 20px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease, transform 0.2s ease;
-            margin-left: 20px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .chat-button:hover {
-            background: #0066DD;
-            transform: translateY(-2px);
+            background: #0052CC;
             color: white;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+            color: #E5E7EB;
+        }
+
+        body.dark-mode header {
+            background: rgba(31, 41, 55, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode nav a {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode nav a:hover,
+        body.dark-mode nav a.active {
+            color: #60A5FA;
+        }
+
+        body.dark-mode .marketplace-header {
+            background: rgba(31, 41, 55, 0.8);
+            border-color: rgba(75, 85, 99, 0.3);
+        }
+
+        body.dark-mode .marketplace-title {
+            background: linear-gradient(135deg, #60A5FA 0%, #818CF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.dark-mode .product-card {
+            background: #1F2937;
+            border-color: #374151;
+        }
+
+        body.dark-mode .product-card:hover {
+            border-color: #60A5FA;
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.2);
+        }
+
+        body.dark-mode .product-title {
+            color: #F3F4F6;
+        }
+
+        body.dark-mode .product-description {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode .product-meta {
+            color: #6B7280;
+        }
+
+        body.dark-mode .poc-button {
+            background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+        }
+
+        body.dark-mode .poc-button:hover {
+            background: linear-gradient(135deg, #9333EA 0%, #C084FC 100%);
         }
 
         .marketplace-container {
@@ -495,11 +589,11 @@
 
         .secondary-actions {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 8px;
         }
 
-        .explainer-btn, .how-to-btn {
+        .how-to-btn {
             background: white;
             color: #2563EB;
             padding: 10px 12px;
@@ -516,7 +610,7 @@
             cursor: pointer;
         }
 
-        .explainer-btn:hover, .how-to-btn:hover {
+        .how-to-btn:hover {
             background: #EFF6FF;
         }
 
@@ -1324,6 +1418,9 @@
 
 
         footer {
+            position: sticky;
+            bottom: 0;
+            z-index: 50;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -1518,6 +1615,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="css/opti-chatbot.css">
 </head>
 <body>
     <header>
@@ -1526,10 +1624,17 @@
             <a href="landing-page.html">Home</a>
             <a href="opti.html">Opti</a>
             <a href="marketplace.html" class="active">Marketplace</a>
-            <a href="#">AOM Adoption</a>
-            <a href="#">Pricing</a>
-            <a href="chat.html" class="chat-button">Chat with RLA</a>
+            <a href="aom-adoption.html">AOM Adoption</a>
+            <a href="pricing.html">Pricing</a>
         </nav>
+        <div class="header-right">
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <a href="chat.html" class="chat-button">Try Opti!</a>
+        </div>
     </header>
 
     <div class="marketplace-container">
@@ -1612,20 +1717,13 @@
                             </button>
                         </div>
                         <div class="secondary-actions">
-                            <a href="#" class="explainer-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="23,7 16,12 23,17 23,7"/>
-                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <a href="#" class="how-to-btn">
+<a href="agentic-forecaster-demo.html" class="how-to-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                     <line x1="8" y1="21" x2="16" y2="21"/>
                                     <line x1="12" y1="17" x2="12" y2="21"/>
                                 </svg>
-                                How To
+                                Explainer
                             </a>
                             <button onclick="showDataModal('agentic-forecaster')" class="data-module-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1707,20 +1805,13 @@
                             </button>
                         </div>
                         <div class="secondary-actions">
-                            <a href="#" class="explainer-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="23,7 16,12 23,17 23,7"/>
-                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <a href="#" class="how-to-btn">
+<a href="replenishment-orchestrator-demo.html" class="how-to-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                     <line x1="8" y1="21" x2="16" y2="21"/>
                                     <line x1="12" y1="17" x2="12" y2="21"/>
                                 </svg>
-                                How To
+                                Explainer
                             </a>
                             <button onclick="showDataModal('smart-replenishment-orchestrator')" class="data-module-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1801,20 +1892,13 @@
                             </button>
                         </div>
                         <div class="secondary-actions">
-                            <a href="#" class="explainer-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="23,7 16,12 23,17 23,7"/>
-                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <a href="#" class="how-to-btn">
+<a href="allocation-maximizer-demo.html" class="how-to-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                     <line x1="8" y1="21" x2="16" y2="21"/>
                                     <line x1="12" y1="17" x2="12" y2="21"/>
                                 </svg>
-                                How To
+                                Explainer
                             </a>
                             <button onclick="showDataModal('smart-allocation-maximizer')" class="data-module-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1894,20 +1978,13 @@
                             </button>
                         </div>
                         <div class="secondary-actions">
-                            <a href="#" class="explainer-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="23,7 16,12 23,17 23,7"/>
-                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <a href="#" class="how-to-btn">
+<a href="#" class="how-to-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                     <line x1="8" y1="21" x2="16" y2="21"/>
                                     <line x1="12" y1="17" x2="12" y2="21"/>
                                 </svg>
-                                How To
+                                Explainer
                             </a>
                             <button onclick="showDataModal('po-lead-time-injector')" class="data-module-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1989,20 +2066,13 @@
                             </button>
                         </div>
                         <div class="secondary-actions">
-                            <a href="#" class="explainer-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="23,7 16,12 23,17 23,7"/>
-                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <a href="#" class="how-to-btn">
+<a href="#" class="how-to-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                     <line x1="8" y1="21" x2="16" y2="21"/>
                                     <line x1="12" y1="17" x2="12" y2="21"/>
                                 </svg>
-                                How To
+                                Explainer
                             </a>
                             <button onclick="showDataModal('configure-to-promise-scheduler')" class="data-module-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2674,6 +2744,19 @@
             }
         });
         
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Check for saved dark mode preference on load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
         // POC Modal Functions - Global scope
         var currentStep = 1;
         var totalSteps = 3;
@@ -3230,5 +3313,6 @@ Best regards`);
         });
 
     </script>
+    <script src="js/opti-chatbot.js"></script>
 </body>
 </html>

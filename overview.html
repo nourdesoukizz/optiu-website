@@ -12,6 +12,7 @@
         }
 
         body {
+            padding-bottom: 120px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #F0F5FA;
             min-height: 100vh;
@@ -20,14 +21,13 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 0 40px;
-            height: 70px;
-            display: flex;
+            background: white;
+            padding: 0 60px;
+            height: 64px;
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
             align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -41,6 +41,7 @@
         nav {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 40px;
         }
 
@@ -60,20 +61,62 @@
             color: #0078FF;
         }
 
+        .header-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .dark-mode-toggle {
+            background: transparent;
+            border: none;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            font-size: 20px;
+            padding: 0;
+        }
+
+        .dark-mode-toggle:hover {
+            opacity: 0.7;
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode header {
+            background: #1F2937;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode nav a {
+            color: #9CA3AF;
+        }
+
+        body.dark-mode nav a:hover,
+        body.dark-mode nav a.active {
+            color: #60A5FA;
+        }
+
         .chat-button {
             background: #0078FF;
             color: white;
-            padding: 10px 24px;
-            border-radius: 8px;
+            padding: 8px 20px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease, transform 0.2s ease;
-            margin-left: 20px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s ease;
         }
 
         .chat-button:hover {
             background: #0066DD;
-            transform: translateY(-2px);
             color: white;
         }
 
@@ -175,6 +218,9 @@
         }
 
         footer {
+            position: sticky;
+            bottom: 0;
+            z-index: 50;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -306,6 +352,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="css/opti-chatbot.css">
 </head>
 <body>
     <header>
@@ -313,11 +360,18 @@
         <nav>
             <a href="landing-page.html">Home</a>
             <a href="opti.html">Opti</a>
-            <a href="#">Marketplace</a>
-            <a href="#">AOM Adoption</a>
-            <a href="#">Pricing</a>
-            <a href="chat.html" class="chat-button">Chat with RLA</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="aom-adoption.html">AOM Adoption</a>
+            <a href="pricing.html">Pricing</a>
         </nav>
+        <div class="header-right">
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <a href="chat.html" class="chat-button">Try Opti</a>
+        </div>
     </header>
 
     <main>
@@ -383,5 +437,20 @@
         </div>
     </footer>
 
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Check for saved dark mode preference on load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+    <script src="js/opti-chatbot.js"></script>
 </body>
 </html>

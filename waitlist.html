@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Waitlist | OptiU</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .waitlist-container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .waitlist-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 30px auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .waitlist-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .waitlist-subtitle {
+            font-size: 1.125rem;
+            color: #6B7280;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .waitlist-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #F9FAFB;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            background: #10B981;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .error-message {
+            display: none;
+            background: #EF4444;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .benefits {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .benefits-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        .benefit-icon {
+            width: 16px;
+            height: 16px;
+            background: #10B981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 600px) {
+            .waitlist-container {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+
+            .waitlist-title {
+                font-size: 2rem;
+            }
+
+            .waitlist-subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="opti.html" class="back-link">← Back to Opti</a>
+    
+    <div class="waitlist-container">
+        <div class="logo">O</div>
+        
+        <h1 class="waitlist-title">Join the Waitlist</h1>
+        <p class="waitlist-subtitle">
+            Be among the first to experience the future of optimization. Get early access to Opti when we launch.
+        </p>
+
+        <form class="waitlist-form" id="waitlistForm">
+            <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company" class="form-label">Company (Optional)</label>
+                <input type="text" id="company" name="company" class="form-input" placeholder="Your company name">
+            </div>
+
+            <button type="submit" class="submit-button" id="submitBtn">Join Waitlist</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            🎉 You're on the list! We'll notify you when Opti launches.
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            Something went wrong. Please try again.
+        </div>
+
+        <div class="benefits">
+            <h3 class="benefits-title">What you'll get:</h3>
+            <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <span>Early access to Opti before public launch</span>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <span>Exclusive tutorials and optimization guides</span>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <span>Special launch pricing for waitlist members</span>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">✓</div>
+                <span>Direct input on features and development</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {
+                email: formData.get('email'),
+                name: formData.get('name'),
+                company: formData.get('company') || '',
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                // Send data to server
+                const response = await fetch('/api/waitlist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    successMessage.style.display = 'block';
+                    this.reset();
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessage.style.display = 'block';
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join Waitlist';
+            }
+        });
+    </script>
+</body>
+</html>

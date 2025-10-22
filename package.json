@@ -1,0 +1,20 @@
+{
+  "name": "optiu-waitlist",
+  "version": "1.0.0",
+  "description": "Waitlist server for OptiU website",
+  "main": "waitlist-server.js",
+  "scripts": {
+    "start": "node waitlist-server.js",
+    "dev": "nodemon waitlist-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["waitlist", "express", "csv"],
+  "author": "OptiU",
+  "license": "MIT"
+}
