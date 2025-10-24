@@ -1,69 +1,56 @@
-// Opti Chatbot Widget
+// Professional Opti Chatbot Widget
 class OptiChatbot {
     constructor() {
         this.isOpen = false;
-        this.isMinimized = false;
-        this.isDragging = false;
-        this.dragOffset = { x: 0, y: 0 };
+        this.messages = [];
         this.init();
     }
 
     init() {
         this.createChatbot();
         this.attachEventListeners();
-        this.loadGreeting();
+        this.loadWelcomeMessage();
     }
 
     createChatbot() {
-        // Create chatbot container
+        // Create chatbot container with professional design
         const chatbotHTML = `
             <div id="opti-chatbot" class="opti-chatbot">
-                <!-- Floating Button -->
-                <div id="opti-chat-button" class="opti-chat-button">
-                    <div class="opti-avatar">
-                        <div class="opti-character">
-                            <div class="opti-face">
-                                <div class="opti-eyes">
-                                    <div class="opti-eye opti-eye-left"></div>
-                                    <div class="opti-eye opti-eye-right"></div>
-                                </div>
-                                <div class="opti-mouth"></div>
-                            </div>
-                            <div class="opti-pulse-ring"></div>
-                        </div>
+                <!-- Modern Floating Button -->
+                <button id="opti-chat-button" class="opti-chat-button" aria-label="Open chat">
+                    <div class="opti-chat-icon">
+                        <svg class="opti-message-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                            <path d="M7 9h10v2H7zm0-3h10v2H7z"/>
+                        </svg>
+                        <svg class="opti-close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
                     </div>
-                    <div class="opti-tooltip">Ask Opti</div>
-                    <div class="opti-notification-dot"></div>
-                </div>
+                    <div class="opti-notification-badge">1</div>
+                </button>
 
-                <!-- Chat Widget -->
+                <!-- Professional Chat Widget -->
                 <div id="opti-chat-widget" class="opti-chat-widget">
+                    <!-- Header -->
                     <div class="opti-chat-header">
-                        <div class="opti-header-avatar">
-                            <div class="opti-character-small">
-                                <div class="opti-face-small">
-                                    <div class="opti-eyes-small">
-                                        <div class="opti-eye-small"></div>
-                                        <div class="opti-eye-small"></div>
-                                    </div>
-                                    <div class="opti-mouth-small"></div>
+                        <div class="opti-header-left">
+                            <div class="opti-header-logo">AI</div>
+                            <div class="opti-header-info">
+                                <div class="opti-header-title">OptiU Assistant</div>
+                                <div class="opti-header-status">
+                                    <span class="opti-status-dot"></span>
+                                    <span>Online - Ready to help</span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="opti-header-info">
-                            <div class="opti-header-title">Opti Chat</div>
-                            <div class="opti-header-status">
-                                <div class="opti-status-dot"></div>
-                                <span>Online</span>
                             </div>
                         </div>
                         <div class="opti-header-actions">
-                            <button id="opti-minimize-btn" class="opti-action-btn" title="Minimize">
+                            <button class="opti-action-btn" aria-label="Minimize">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                 </svg>
                             </button>
-                            <button id="opti-close-btn" class="opti-action-btn" title="Close">
+                            <button class="opti-action-btn" id="opti-close-btn" aria-label="Close">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <line x1="18" y1="6" x2="6" y2="18"></line>
                                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -72,393 +59,246 @@ class OptiChatbot {
                         </div>
                     </div>
 
+                    <!-- Messages Area -->
                     <div class="opti-chat-messages" id="opti-chat-messages">
-                        <!-- Messages will be dynamically added here -->
+                        <!-- Messages will be added here dynamically -->
                     </div>
 
-                    <div class="opti-chat-input-container">
-                        <div class="opti-typing-indicator" id="opti-typing">
-                            <div class="opti-typing-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <span class="opti-typing-text">Opti is thinking...</span>
+                    <!-- Typing Indicator -->
+                    <div class="opti-typing-indicator" id="opti-typing-indicator">
+                        <div class="opti-typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="opti-chat-input-container">
                         <div class="opti-input-wrapper">
-                            <input type="text" id="opti-chat-input" placeholder="Ask me anything about OptiU..." />
-                            <button id="opti-send-btn" class="opti-send-btn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                                    <polygon points="22,2 15,22 11,13 2,9"></polygon>
-                                </svg>
-                            </button>
+                            <input 
+                                type="text" 
+                                id="opti-chat-input" 
+                                placeholder="Type your message..."
+                                autocomplete="off"
+                            />
+                            <div class="opti-input-actions">
+                                <button class="opti-attach-btn" aria-label="Attach file">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/>
+                                    </svg>
+                                </button>
+                                <button class="opti-send-btn" id="opti-send-btn" aria-label="Send message">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
 
+        // Add to page
         document.body.insertAdjacentHTML('beforeend', chatbotHTML);
     }
 
     attachEventListeners() {
         const chatButton = document.getElementById('opti-chat-button');
         const closeBtn = document.getElementById('opti-close-btn');
-        const minimizeBtn = document.getElementById('opti-minimize-btn');
         const sendBtn = document.getElementById('opti-send-btn');
         const chatInput = document.getElementById('opti-chat-input');
-        const chatHeader = document.querySelector('.opti-chat-header');
+        const chatWidget = document.getElementById('opti-chat-widget');
 
         // Toggle chat
         chatButton.addEventListener('click', () => this.toggleChat());
-        closeBtn.addEventListener('click', () => this.closeChat());
-        minimizeBtn.addEventListener('click', () => this.minimizeChat());
+
+        // Close chat
+        closeBtn.addEventListener('click', () => this.toggleChat());
 
         // Send message
         sendBtn.addEventListener('click', () => this.sendMessage());
+
+        // Enter key to send
         chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
                 this.sendMessage();
             }
         });
 
-        // Dragging functionality
-        chatHeader.addEventListener('mousedown', (e) => this.startDrag(e));
-        document.addEventListener('mousemove', (e) => this.drag(e));
-        document.addEventListener('mouseup', () => this.stopDrag());
-
-        // Auto-hide tooltip after showing
-        setTimeout(() => {
-            const tooltip = document.querySelector('.opti-tooltip');
-            if (tooltip) tooltip.style.opacity = '0';
-        }, 3000);
-
-        // Add some character personality
-        this.addCharacterPersonality();
+        // Click outside to close
+        document.addEventListener('click', (e) => {
+            if (this.isOpen && 
+                !chatWidget.contains(e.target) && 
+                !chatButton.contains(e.target)) {
+                // Optionally close when clicking outside
+                // this.toggleChat();
+            }
+        });
     }
 
     toggleChat() {
         this.isOpen = !this.isOpen;
-        const widget = document.getElementById('opti-chat-widget');
-        const button = document.getElementById('opti-chat-button');
-        const notification = document.querySelector('.opti-notification-dot');
+        const chatButton = document.getElementById('opti-chat-button');
+        const chatWidget = document.getElementById('opti-chat-widget');
+        const badge = document.querySelector('.opti-notification-badge');
 
         if (this.isOpen) {
-            widget.style.display = 'flex';
-            setTimeout(() => widget.classList.add('opti-show'), 10);
-            button.classList.add('opti-active');
-            notification.style.display = 'none';
+            chatButton.classList.add('opti-active');
+            chatWidget.classList.add('opti-show');
+            badge.classList.remove('opti-show');
             document.getElementById('opti-chat-input').focus();
         } else {
-            widget.classList.remove('opti-show');
-            setTimeout(() => widget.style.display = 'none', 300);
-            button.classList.remove('opti-active');
+            chatButton.classList.remove('opti-active');
+            chatWidget.classList.remove('opti-show');
         }
     }
 
-    closeChat() {
-        this.isOpen = false;
-        const widget = document.getElementById('opti-chat-widget');
-        const button = document.getElementById('opti-chat-button');
-
-        widget.classList.remove('opti-show');
-        setTimeout(() => widget.style.display = 'none', 300);
-        button.classList.remove('opti-active');
-    }
-
-    minimizeChat() {
-        this.isMinimized = !this.isMinimized;
-        const widget = document.getElementById('opti-chat-widget');
-        
-        if (this.isMinimized) {
-            widget.classList.add('opti-minimized');
-        } else {
-            widget.classList.remove('opti-minimized');
-        }
-    }
-
-    startDrag(e) {
-        this.isDragging = true;
-        const widget = document.getElementById('opti-chat-widget');
-        const rect = widget.getBoundingClientRect();
-        this.dragOffset.x = e.clientX - rect.left;
-        this.dragOffset.y = e.clientY - rect.top;
-        widget.style.transition = 'none';
-    }
-
-    drag(e) {
-        if (!this.isDragging) return;
-
-        const widget = document.getElementById('opti-chat-widget');
-        const newX = e.clientX - this.dragOffset.x;
-        const newY = e.clientY - this.dragOffset.y;
-
-        // Keep within viewport bounds
-        const maxX = window.innerWidth - widget.offsetWidth;
-        const maxY = window.innerHeight - widget.offsetHeight;
-
-        const boundedX = Math.max(0, Math.min(newX, maxX));
-        const boundedY = Math.max(0, Math.min(newY, maxY));
-
-        widget.style.left = boundedX + 'px';
-        widget.style.top = boundedY + 'px';
-        widget.style.right = 'auto';
-        widget.style.bottom = 'auto';
-    }
-
-    stopDrag() {
-        if (!this.isDragging) return;
-        this.isDragging = false;
-        const widget = document.getElementById('opti-chat-widget');
-        widget.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-    }
-
-    loadGreeting() {
+    loadWelcomeMessage() {
         setTimeout(() => {
-            const greetings = [
-                "Hi! I'm Opti, your optimization assistant. Ask me anything about OptiU, our features, or how we can help optimize your business! 🚀",
-                "Hello there! 👋 I'm Opti, and I'm here to help you understand how OptiU can transform your decision-making process!",
-                "Hey! I'm Opti, your friendly optimization expert. Ready to discover how AOMs can revolutionize your business? 💡",
-                "Welcome! I'm Opti, and I love talking about optimization. What would you like to know about OptiU? ✨"
-            ];
-            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-            this.addMessage('opti', randomGreeting);
-            this.showNotification();
-            
-            // Add a follow-up message after a delay
-            setTimeout(() => {
-                this.addMessage('opti', "💡 Pro tip: Try asking me about pricing, features, or how AOMs work!");
-            }, 3000);
-        }, 2000);
+            this.addMessage(
+                'Assistant',
+                'Hello! I\'m here to answer any questions you have about OptiU and how our AI-powered optimization platform can help transform your business operations.',
+                'opti'
+            );
+        }, 1000);
     }
 
-    sendMessage() {
+    async sendMessage() {
         const input = document.getElementById('opti-chat-input');
         const message = input.value.trim();
 
         if (!message) return;
 
-        this.addMessage('user', message);
+        // Add user message
+        this.addMessage('You', message, 'user');
+        
+        // Clear input
         input.value = '';
 
         // Show typing indicator
-        this.showTyping();
+        this.showTypingIndicator();
 
-        // Simulate response delay
-        setTimeout(() => {
-            this.hideTyping();
-            this.generateResponse(message);
-        }, 1000 + Math.random() * 2000);
+        try {
+            console.log('Sending message to API:', message);
+            // Call backend API
+            const response = await this.callOpenAI(message);
+            console.log('Received response:', response);
+            this.hideTypingIndicator();
+            this.addMessage('Assistant', response, 'opti');
+        } catch (error) {
+            this.hideTypingIndicator();
+            console.error('Chat error:', error);
+            // Use fallback response instead of generic error
+            const fallbackResponse = this.getFallbackResponse(message);
+            this.addMessage('Assistant', fallbackResponse, 'opti');
+        }
     }
 
-    addMessage(sender, message) {
+    addMessage(sender, text, type = 'opti') {
         const messagesContainer = document.getElementById('opti-chat-messages');
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `opti-message opti-message-${sender}`;
-
-        if (sender === 'opti') {
-            messageDiv.innerHTML = `
-                <div class="opti-message-avatar">
-                    <div class="opti-character-tiny">
-                        <div class="opti-face-tiny">
-                            <div class="opti-eyes-tiny">
-                                <div class="opti-eye-tiny"></div>
-                                <div class="opti-eye-tiny"></div>
-                            </div>
-                            <div class="opti-mouth-tiny"></div>
-                        </div>
-                    </div>
+        const messageHTML = `
+            <div class="opti-message opti-message-${type}">
+                <div class="opti-message-avatar ${type === 'opti' ? 'opti-bot-avatar' : 'opti-user-avatar'}">
+                    ${type === 'opti' ? 'AI' : 'U'}
                 </div>
-                <div class="opti-message-content">${message}</div>
-            `;
-        } else {
-            messageDiv.innerHTML = `
-                <div class="opti-message-content">${message}</div>
-                <div class="opti-message-avatar opti-user-avatar">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
+                <div class="opti-message-content">
+                    ${text}
                 </div>
-            `;
-        }
+            </div>
+        `;
 
-        messagesContainer.appendChild(messageDiv);
+        messagesContainer.insertAdjacentHTML('beforeend', messageHTML);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-        // Animate message appearance
-        setTimeout(() => messageDiv.classList.add('opti-message-show'), 10);
+        
+        // Store message
+        this.messages.push({ sender, text, type, timestamp: new Date() });
     }
 
-    generateResponse(userMessage) {
-        const responses = this.getContextualResponses(userMessage);
-        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        this.addMessage('opti', randomResponse);
-    }
+    async callOpenAI(userMessage) {
+        try {
+            console.log('Making API request to http://localhost:5001/api/chat');
+            
+            // Use the same backend API as the main chat
+            const requestBody = {
+                message: userMessage,
+                history: this.messages.slice(-10).map(msg => ({
+                    role: msg.type === 'user' ? 'user' : 'assistant',
+                    content: msg.text
+                }))
+            };
+            
+            console.log('Request body:', requestBody);
+            
+            const response = await fetch('http://localhost:5001/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody)
+            });
 
-    getContextualResponses(message) {
-        const lowerMessage = message.toLowerCase();
-        const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            console.log('Response status:', response.status);
 
-        // Page-specific responses
-        if (currentPage === 'pricing') {
-            if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('plan')) {
-                return [
-                    "Our pricing is designed to scale with your needs! We offer Starter ($100), Pro ($250), and Team ($500) plans. All include a 2-day free trial with no credit card required! 💳",
-                    "Great question about pricing! Our plans start at just $100/month for the Starter tier. The Pro plan at $250 is our most popular choice. Want to know what's included in each? 📊",
-                ];
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        }
 
-        if (currentPage === 'opti') {
-            if (lowerMessage.includes('opti') || lowerMessage.includes('feature')) {
-                return [
-                    "Opti is like ChatGPT for optimization! Just describe your problem in natural language, upload your Excel data, and get optimal solutions instantly. It's that simple! ✨",
-                    "Opti transforms complex optimization into conversation. Upload your data, ask questions, and get explainable results in seconds. Try our demo! 🎯",
-                ];
+            const data = await response.json();
+            console.log('API response:', data);
+            
+            if (data.response) {
+                return data.response;
+            } else {
+                throw new Error('Invalid response format');
             }
+        } catch (error) {
+            console.error('API call failed:', error);
+            console.log('Using fallback response');
+            // Fallback to contextual responses if API fails
+            return this.getFallbackResponse(userMessage);
         }
-
-        // General responses
-        if (lowerMessage.includes('aom') || lowerMessage.includes('autonomous')) {
-            return [
-                "AOMs (Autonomous Optimization Models) are AI that don't just predict - they prescribe optimal actions and execute them automatically. Think of them as your decision-making autopilot! 🤖",
-                "Autonomous Optimization Models are the future of business decisions. They continuously optimize, adapt to changes, and explain their reasoning. Pretty cool, right? 🚀",
-            ];
-        }
-
-        if (lowerMessage.includes('demo') || lowerMessage.includes('try')) {
-            return [
-                "I'd love to show you a demo! You can try Opti right now with our interactive demo, or schedule a personal demo with our team. What interests you most? 🎮",
-                "Ready to see OptiU in action? Check out our demo page or start a free trial - no credit card needed! Let's optimize something together! ⚡",
-            ];
-        }
-
-        if (lowerMessage.includes('help') || lowerMessage.includes('how')) {
-            return [
-                "I'm here to help! You can ask me about OptiU features, pricing, how AOMs work, or anything else. What would you like to know? 💡",
-                "Happy to help! I can explain our technology, walk you through features, or help you get started. What's on your mind? 🤔",
-            ];
-        }
-
-        // Default responses
-        return [
-            "That's an interesting question! OptiU specializes in making optimization simple and accessible. Would you like to know more about our features or see a demo? 🌟",
-            "Great question! OptiU helps businesses make better decisions through AI-powered optimization. What specific challenge are you trying to solve? 🎯",
-            "I'd be happy to help with that! OptiU transforms complex business problems into simple, conversational solutions. Want to learn more? 💬",
-            "Thanks for asking! OptiU makes optimization as easy as having a conversation. Are you interested in learning about our technology or trying a demo? 🚀",
-        ];
     }
 
-    showTyping() {
-        const typing = document.getElementById('opti-typing');
-        typing.style.display = 'flex';
-        setTimeout(() => typing.classList.add('opti-show'), 10);
+    getFallbackResponse(userMessage) {
+        const lowerMessage = userMessage.toLowerCase();
+        
+        if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+            return 'Hello! I\'m here to help you learn about OptiU and how our AI-powered optimization platform can transform your business operations. What would you like to know?';
+        } else if (lowerMessage.includes('aom') || lowerMessage.includes('model')) {
+            return 'Our AOMs (Autonomous Optimization Models) are pre-built AI solutions that optimize specific business functions like forecasting, inventory management, and supply chain operations. Would you like to learn more about a specific AOM?';
+        } else if (lowerMessage.includes('demo') || lowerMessage.includes('poc')) {
+            return 'We offer free Proof of Concepts to demonstrate the value of our solutions. You can request one directly from our marketplace page. Would you like me to guide you there?';
+        } else {
+            return 'I\'d be happy to help you learn more about OptiU. We specialize in AI-powered optimization for supply chain, operations, and business decision-making. What specific area interests you?';
+        }
     }
 
-    hideTyping() {
-        const typing = document.getElementById('opti-typing');
-        typing.classList.remove('opti-show');
-        setTimeout(() => typing.style.display = 'none', 300);
+    showTypingIndicator() {
+        const indicator = document.getElementById('opti-typing-indicator');
+        indicator.classList.add('opti-show');
+    }
+
+    hideTypingIndicator() {
+        const indicator = document.getElementById('opti-typing-indicator');
+        indicator.classList.remove('opti-show');
     }
 
     showNotification() {
-        const notification = document.querySelector('.opti-notification-dot');
+        const badge = document.querySelector('.opti-notification-badge');
         if (!this.isOpen) {
-            notification.style.display = 'block';
+            badge.classList.add('opti-show');
         }
-    }
-
-    addCharacterPersonality() {
-        const eyes = document.querySelectorAll('.opti-eye, .opti-eye-small, .opti-eye-tiny');
-        const mouths = document.querySelectorAll('.opti-mouth, .opti-mouth-small, .opti-mouth-tiny');
-        const characters = document.querySelectorAll('.opti-character, .opti-character-small, .opti-character-tiny');
-
-        // Random blinking animation
-        setInterval(() => {
-            if (Math.random() < 0.3) {
-                eyes.forEach(eye => {
-                    eye.style.transform = 'scaleY(0.1)';
-                    setTimeout(() => {
-                        eye.style.transform = 'scaleY(1)';
-                    }, 150);
-                });
-            }
-        }, 2000);
-
-        // Random eye movement
-        setInterval(() => {
-            if (Math.random() < 0.4) {
-                const direction = Math.random() < 0.5 ? 'left' : 'right';
-                eyes.forEach(eye => {
-                    eye.style.transform = `translateX(${direction === 'left' ? '-2px' : '2px'})`;
-                    setTimeout(() => {
-                        eye.style.transform = 'translateX(0)';
-                    }, 1000);
-                });
-            }
-        }, 3000);
-
-        // Talking animation when typing
-        const originalShowTyping = this.showTyping.bind(this);
-        this.showTyping = function() {
-            originalShowTyping();
-            
-            // Start talking animation
-            const talkInterval = setInterval(() => {
-                mouths.forEach(mouth => {
-                    mouth.style.height = Math.random() < 0.5 ? '3px' : '1px';
-                    mouth.style.borderRadius = Math.random() < 0.5 ? '50%' : '0';
-                });
-            }, 200);
-
-            // Store interval to clear it later
-            this._talkInterval = talkInterval;
-        };
-
-        const originalHideTyping = this.hideTyping.bind(this);
-        this.hideTyping = function() {
-            originalHideTyping();
-            
-            // Stop talking animation
-            if (this._talkInterval) {
-                clearInterval(this._talkInterval);
-                mouths.forEach(mouth => {
-                    mouth.style.height = '';
-                    mouth.style.borderRadius = '';
-                });
-            }
-        };
-
-        // Character bounce on hover
-        characters.forEach(character => {
-            character.addEventListener('mouseenter', () => {
-                character.style.transform = 'scale(1.1)';
-                character.style.transition = 'transform 0.2s ease';
-            });
-            
-            character.addEventListener('mouseleave', () => {
-                character.style.transform = 'scale(1)';
-            });
-        });
-
-        // Random cheerful animations
-        setInterval(() => {
-            if (Math.random() < 0.1 && !this.isOpen) {
-                const mainCharacter = document.querySelector('.opti-character');
-                if (mainCharacter) {
-                    mainCharacter.style.animation = 'opti-bounce 0.6s ease';
-                    setTimeout(() => {
-                        mainCharacter.style.animation = '';
-                    }, 600);
-                }
-            }
-        }, 10000);
     }
 }
 
 // Initialize chatbot when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        new OptiChatbot();
+    });
+} else {
     new OptiChatbot();
-});
+}

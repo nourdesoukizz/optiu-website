@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PO Lead Time Injector | OptiU Marketplace</title>
+    <link rel="stylesheet" href="css/opti-chatbot.css">
+    <style>
+        /* Import all styles from the template */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #FFFFFF;
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        /* All styles copied from smart-allocation-engine-details.html */
+        header {
+            background: white;
+            padding: 0 60px;
+            height: 64px;
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
+            align-items: center;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo { height: 40px; width: auto; }
+        nav { display: flex; align-items: center; justify-content: center; gap: 40px; }
+        nav a { text-decoration: none; color: #4A5568; font-size: 16px; font-weight: 500; transition: color 0.3s ease; }
+        nav a:hover, nav a.active { color: #2563EB; }
+        .header-right { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
+        .contact-sales-btn { background: #2563EB; color: white; padding: 8px 20px; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 14px; transition: background 0.2s ease; }
+        .contact-sales-btn:hover { background: #1D4ED8; }
+        .main-container { max-width: 1400px; margin: 0 auto; padding: 40px 60px; display: grid; grid-template-columns: 1fr 360px; gap: 40px; }
+        .content-section { background: white; }
+        .product-header { margin-bottom: 40px; }
+        .category-badge { display: inline-block; background: #2563EB; color: white; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
+        .product-title { font-size: 48px; font-weight: 700; color: #111827; margin-bottom: 12px; line-height: 1.1; }
+        .product-subtitle { font-size: 20px; color: #6B7280; font-weight: 400; margin-bottom: 30px; }
+        .action-buttons { display: flex; gap: 16px; margin-bottom: 40px; }
+        .btn-primary { background: #2563EB; color: white; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: 600; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; }
+        .btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); }
+        .btn-secondary { background: white; color: #111827; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: 600; border: 2px solid #E5E7EB; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.2s ease; }
+        .btn-secondary:hover { border-color: #9CA3AF; background: #F9FAFB; }
+        .section { margin-bottom: 48px; }
+        .section-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #EBF5FF; border-radius: 50%; margin-bottom: 16px; }
+        .section-title { font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+        .section-content { font-size: 16px; color: #4B5563; line-height: 1.8; }
+        .features-list { list-style: none; margin-top: 20px; }
+        .feature-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 16px; color: #4B5563; }
+        .feature-icon { width: 24px; height: 24px; border-radius: 50%; background: #EBF5FF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .roi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+        
+        /* Video Section */
+        .video-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: #F9FAFB;
+            border-radius: 12px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .roi-item { padding: 20px; background: #F9FAFB; border-radius: 12px; border-left: 4px solid #2563EB; }
+        .roi-label { font-size: 14px; color: #6B7280; margin-bottom: 8px; font-weight: 500; }
+        .roi-value { font-size: 32px; font-weight: 700; color: #2563EB; }
+        .sectors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+        .sector-item { padding: 16px; background: white; border: 1px solid #E5E7EB; border-radius: 8px; text-align: center; font-size: 14px; color: #4B5563; transition: all 0.2s ease; }
+        .sector-item:hover { border-color: #2563EB; background: #EBF5FF; }
+        .sidebar { position: sticky; top: 100px; height: fit-content; }
+        .pricing-card { background: white; border: 2px solid #E5E7EB; border-radius: 12px; padding: 32px; margin-bottom: 24px; text-align: center; }
+        .price-amount { font-size: 48px; font-weight: 700; color: #111827; }
+        .price-period { font-size: 18px; color: #6B7280; font-weight: 400; }
+        .trial-info { font-size: 14px; color: #6B7280; margin: 16px 0 24px 0; }
+        .cta-button { width: 100%; background: #2563EB; color: white; padding: 16px; border-radius: 8px; font-size: 16px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s ease; margin-bottom: 12px; display: block; text-align: center; text-decoration: none; }
+        .cta-button:hover { background: #1D4ED8; transform: translateY(-1px); }
+        .demo-button { width: 100%; background: white; color: #111827; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; border: 2px solid #E5E7EB; cursor: pointer; transition: all 0.2s ease; margin-bottom: 12px; }
+        .demo-button:hover { border-color: #9CA3AF; background: #F9FAFB; }
+        .contact-link { display: block; text-align: center; color: #2563EB; text-decoration: none; font-size: 14px; font-weight: 600; margin-top: 8px; }
+        .info-card { background: #F9FAFB; border-radius: 12px; padding: 24px; }
+        .info-title { font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 20px; }
+        .info-item { margin-bottom: 20px; }
+        .info-label { font-size: 12px; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600; }
+        .info-value { font-size: 14px; color: #111827; font-weight: 500; }
+        .credentials-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .credentials-modal.show { display: flex; }
+        .credentials-content { background: white; border-radius: 16px; padding: 32px; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); position: relative; }
+        .credentials-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .credentials-title { font-size: 1.5rem; font-weight: 700; color: #1F2937; }
+        .close-btn { background: none; border: none; font-size: 24px; color: #6B7280; cursor: pointer; padding: 4px; border-radius: 4px; transition: all 0.2s ease; }
+        .close-btn:hover { background: #F3F4F6; color: #374151; }
+        .credentials-info { background: #F8FAFC; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .credentials-field { margin-bottom: 16px; }
+        .credentials-field:last-child { margin-bottom: 0; }
+        .credentials-label { font-weight: 600; color: #4B5563; display: block; margin-bottom: 8px; font-size: 14px; }
+        .credentials-value { font-family: 'Courier New', monospace; font-size: 16px; font-weight: 600; color: #111827; padding: 8px 12px; background: white; border-radius: 6px; border: 1px solid #E5E7EB; }
+        .copy-btn { background: #2563EB; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+        .copy-btn:hover { background: #1D4ED8; }
+        .copy-btn.copied { background: #10B981; }
+        .credentials-note { font-size: 14px; color: #6B7280; line-height: 1.5; }
+        .data-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .data-modal.show { display: flex; }
+        .data-content { background: white; border-radius: 16px; padding: 32px; max-width: 900px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); position: relative; }
+        .data-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #F3F4F6; }
+        .data-title { font-size: 1.75rem; font-weight: 700; color: #1F2937; display: flex; align-items: center; gap: 12px; }
+        .data-title-icon { background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%); color: white; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .download-all-btn { background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+        .download-all-btn:hover { background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%); transform: translateY(-2px); }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .data-table thead { background: #F9FAFB; border-bottom: 2px solid #E5E7EB; }
+        .data-table th { padding: 12px; text-align: left; font-weight: 600; color: #374151; font-size: 14px; }
+        .data-table tbody tr { border-bottom: 1px solid #F3F4F6; }
+        .data-table tbody tr:hover { background: #F9FAFB; }
+        .data-table td { padding: 12px; font-size: 14px; color: #4B5563; }
+        footer { background: #1F2937; color: white; padding: 40px 60px; margin-top: 80px; }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .footer-left { display: flex; align-items: center; gap: 24px; }
+        .footer-brand { font-size: 20px; font-weight: 700; }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: #9CA3AF; text-decoration: none; font-size: 14px; transition: color 0.2s ease; }
+        .footer-links a:hover { color: white; }
+
+        @media (max-width: 1024px) {
+            .main-container { grid-template-columns: 1fr; padding: 40px 20px; }
+            .sidebar { position: static; }
+            .roi-grid { grid-template-columns: 1fr; }
+            .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .product-title { font-size: 36px; }
+            .action-buttons { flex-direction: column; }
+            .sectors-grid { grid-template-columns: 1fr; }
+            header { padding: 0 20px; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div class="main-container">
+        <div class="content-section">
+            <div class="product-header">
+                <div class="category-badge">Visibility & Control</div>
+                <h1 class="product-title">PO Lead Time Injector</h1>
+                <p class="product-subtitle">Intelligent Supplier Performance & Delivery Forecasting</p>
+                <div class="action-buttons">
+                    <a href="https://scx-po.optiu.ai/login" target="_blank" class="btn-primary" style="text-decoration: none;">
+                        Try It Live
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                    <button class="btn-secondary" onclick="showCredentials()">Credentials</button>
+                    <button class="btn-secondary" onclick="showDataModal()">Data Module</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                    </div>
+                    Objective
+                </h2>
+                <div class="section-content">
+                    Gain complete visibility and control over your entire supply chain with real-time tracking, alerts, and automated intervention capabilities.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Overview</h2>
+                <div class="section-content">
+                    The PO Lead Time Injector brings intelligence to supplier performance management by accurately predicting when orders will actually arrive, not just when they're promised. Using historical performance data, current capacity constraints, seasonal patterns, and even external factors like port congestion or weather delays, it provides realistic delivery windows that operations teams can trust. By reducing uncertainty in lead times by 4+ days, it enables better production planning, reduces expediting costs, and improves customer delivery promises. This AOM is essential for companies managing complex global supply chains.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    Key Features
+                </h2>
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        Real-time visibility across all supply chain touchpoints
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        Intelligent alerting with risk-based prioritization
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        Automated response workflows and intervention triggers
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        Performance dashboards with predictive analytics
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        Multi-tier supplier and logistics partner integration
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                        <path d="m22 8-6 4 6 4V8Z"></path>
+                        <rect width="14" height="12" x="2" y="6" rx="2" ry="2"></rect>
+                    </svg>
+                    Product Demo
+                </h2>
+                <div class="video-section">
+                    <div class="video-container">
+                        <video controls>
+                            <source src="videos/PO-DEMO.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    ROI Highlights
+                </h2>
+                <div class="roi-grid">
+                    <div class="roi-item">
+                        <div class="roi-label">Response Time</div>
+                        <div class="roi-value">-65%</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="roi-label">Supply Disruptions</div>
+                        <div class="roi-value">-50%</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="roi-label">Visibility Coverage</div>
+                        <div class="roi-value">+90%</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="roi-label">Operational Efficiency</div>
+                        <div class="roi-value">+25%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Target Sectors</h2>
+                <div class="sectors-grid">
+                    <div class="sector-item">🏭 Manufacturing</div>
+                    <div class="sector-item">🚢 Shipping & Logistics</div>
+                    <div class="sector-item">✈️ Aerospace & Defense</div>
+                    <div class="sector-item">🚗 Automotive</div>
+                    <div class="sector-item">⚡ Energy & Utilities</div>
+                    <div class="sector-item">🏥 Healthcare Systems</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="pricing-card">
+                <div class="price-amount">$100<span class="price-period">/month</span></div>
+                <div class="trial-info">7-day free trial included</div>
+                <a href="https://scx-po.optiu.ai/login" target="_blank" class="cta-button">Try It Live</a>
+                <button class="demo-button" onclick="showCredentials()">Credentials</button>
+                <a href="mailto:webmaster@optiu.ai?subject=Contact%20Sales" class="contact-link">Contact Sales</a>
+            </div>
+
+            <div class="info-card">
+                <h3 class="info-title">Quick Info</h3>
+                <div class="info-item">
+                    <div class="info-label">Category</div>
+                    <div class="info-value">Visibility & Control</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Deployment</div>
+                    <div class="info-value">Cloud SaaS or Hybrid</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Integration</div>
+                    <div class="info-value">API, EDI, IoT, ERP</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Support</div>
+                    <div class="info-value">24/7 Email & Chat</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <span class="footer-brand">OptiU</span>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Documentation</a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <span style="color: #9CA3AF;">© 2024 OptiU. All rights reserved.</span>
+            </div>
+    <div id="footer-placeholder"></div>                        <button class="copy-btn" onclick="copyToClipboard('username')">Copy</button>
+                    </div>
+                </div>
+                <div class="credentials-field">
+                    <span class="credentials-label">Password:</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="credentials-value" id="password">OptiU@2024#Secure</span>
+                        <button class="copy-btn" onclick="copyToClipboard('password')">Copy</button>
+                    </div>
+                </div>
+            </div>
+            <p class="credentials-note">
+                These credentials provide access to the demo environment. Your session will automatically expire after 2 hours of inactivity.
+            </p>
+        </div>
+    </div>
+
+    <!-- Data Module Modal -->
+    <div class="data-modal" id="dataModal">
+        <div class="data-content">
+            <div class="data-header">
+                <div class="data-title">
+                    <div class="data-title-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <path d="M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span>PO Lead Time Injector - Data Module</span>
+                        <div style="font-size: 14px; font-weight: 400; color: #6B7280; margin-top: 4px;">Download sample data and documentation</div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <button class="download-all-btn" onclick="downloadAllData()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Download All
+                    </button>
+                    <button class="close-btn" onclick="hideDataModal()">&times;</button>
+                </div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Description</th>
+                        <th>Key Fields</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 600; color: #1F2937;">suppliers.csv</td>
+                        <td>Supplier master data and capabilities</td>
+                        <td style="font-family: monospace; font-size: 13px;">supplier_id, name, tier, location, capacity, risk_score</td>
+                        <td style="font-family: monospace; font-size: 13px; word-break: break-all;">SUP001, Acme Manufacturing, Tier1, Detroit MI, 50000, 0.15</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600; color: #1F2937;">shipments.csv</td>
+                        <td>In-transit shipment tracking data</td>
+                        <td style="font-family: monospace; font-size: 13px;">shipment_id, origin, destination, status, eta, carrier</td>
+                        <td style="font-family: monospace; font-size: 13px; word-break: break-all;">SH12345, Chicago IL, Dallas TX, In-Transit, 2024-01-15, FedEx</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600; color: #1F2937;">alerts.csv</td>
+                        <td>System alerts and event triggers</td>
+                        <td style="font-family: monospace; font-size: 13px;">alert_id, type, severity, entity, description, timestamp</td>
+                        <td style="font-family: monospace; font-size: 13px; word-break: break-all;">ALT001, Delay, High, SH12345, Weather delay - 4 hours, 2024-01-14T14:30:00Z</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function showCredentials() {
+            document.getElementById('credentialsModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function hideCredentials() {
+            document.getElementById('credentialsModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        function showDataModal() {
+            document.getElementById('dataModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function hideDataModal() {
+            document.getElementById('dataModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        function downloadAllData() {
+            alert('Download functionality would be implemented here. This would download suppliers.csv, shipments.csv, and alerts.csv files.');
+        }
+        document.getElementById('credentialsModal').addEventListener('click', function(e) {
+            if (e.target === this) hideCredentials();
+        });
+        document.getElementById('dataModal').addEventListener('click', function(e) {
+            if (e.target === this) hideDataModal();
+        });
+    </script>
+    <script src="js/shared-components.js"></script>
+    <script>
+        setActiveNavigation('nav-marketplace');
+    </script></body>
+</html>

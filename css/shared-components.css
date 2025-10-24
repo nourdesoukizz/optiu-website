@@ -1,0 +1,283 @@
+/* Shared Components Styles */
+
+/* Ensure html and body have proper height */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    position: relative;
+}
+
+/* Wrapper for all main content between header and footer */
+.main-content-wrapper {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Apply flex-grow to main containers */
+body > div:not(#header-placeholder):not(#footer-placeholder):not(.opti-chat-widget),
+body > main,
+body > section,
+.hero-section,
+.features-section,
+.marketplace-container,
+.demo-container,
+.pricing-container,
+.aom-adoption-container,
+.waitlist-container,
+.overview-container,
+.chat-container {
+    flex: 1 0 auto;
+}
+
+/* Header Styles */
+#header-placeholder header {
+    background: white;
+    padding: 0 60px;
+    height: 64px;
+    display: grid;
+    grid-template-columns: 150px 1fr auto;
+    align-items: center;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-logo {
+    height: 40px;
+    width: auto;
+}
+
+#header-placeholder nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+#header-placeholder nav a {
+    text-decoration: none;
+    color: #4A5568;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+#header-placeholder nav a:hover {
+    color: #0078FF;
+}
+
+#header-placeholder nav a.active {
+    color: #0078FF;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}
+
+.dark-mode-toggle {
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    font-size: 20px;
+    padding: 0;
+}
+
+.dark-mode-toggle:hover {
+    opacity: 0.7;
+}
+
+.chat-button {
+    background: #0078FF;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.chat-button:hover {
+    background: #0066DD;
+    color: white;
+}
+
+/* Footer Styles - Sticky at bottom */
+#footer-placeholder {
+    flex-shrink: 0;
+    margin-top: auto;
+    width: 100%;
+}
+
+#footer-placeholder footer {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.footer-brand-text {
+    font-size: 15px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #0066DD 0%, #0052CC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.5px;
+}
+
+.footer-copyright {
+    color: #A0AEC0;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.social-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.social-link {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: #A0AEC0;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: rgba(0, 102, 221, 0.1);
+    color: #0066DD;
+    transform: translateY(-2px);
+}
+
+.social-link svg {
+    position: relative;
+    z-index: 1;
+    width: 18px;
+    height: 18px;
+}
+
+.footer-pulse {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #00FF88;
+    border-radius: 50%;
+    margin-left: 10px;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+/* Dark Mode Styles */
+body.dark-mode #header-placeholder header {
+    background: #1F2937;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #header-placeholder nav a {
+    color: #D1D5DB;
+}
+
+body.dark-mode #header-placeholder nav a:hover {
+    color: #60A5FA;
+}
+
+body.dark-mode #header-placeholder nav a.active {
+    color: #60A5FA;
+}
+
+body.dark-mode #footer-placeholder footer {
+    background: rgba(31, 41, 55, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .footer-copyright {
+    color: #6B7280;
+}
+
+body.dark-mode .social-link {
+    color: #6B7280;
+}
+
+body.dark-mode .social-link:hover {
+    background: rgba(96, 165, 250, 0.1);
+    color: #60A5FA;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #header-placeholder header {
+        padding: 0 20px;
+    }
+
+    #header-placeholder nav {
+        gap: 20px;
+    }
+
+    .footer-container {
+        padding: 0 20px;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-left {
+        gap: 20px;
+        flex-direction: column;
+    }
+}

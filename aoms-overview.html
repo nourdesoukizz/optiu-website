@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn About AOMs - Autonomous Optimization Models | OptiU</title>
+    <link rel="stylesheet" href="css/opti-chatbot.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-bottom: 120px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #F0F5FA;
+            line-height: 1.6;
+            color: #1A1A1A;
+        }
+
+        header {
+            background: white;
+            padding: 0 60px;
+            height: 64px;
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
+            align-items: center;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo {
+            height: 48px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4A5568;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #0078FF;
+        }
+
+        nav a.active {
+            color: #0078FF;
+        }
+
+        .header-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .dark-mode-toggle {
+            background: transparent;
+            border: none;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            font-size: 20px;
+            padding: 0;
+        }
+
+        .dark-mode-toggle:hover {
+            opacity: 0.7;
+        }
+
+        .chat-button {
+            background: #0078FF;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s ease;
+        }
+
+        .chat-button:hover {
+            background: #0066DD;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .demo-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1A1A1A;
+            line-height: 1.1;
+        }
+
+        .demo-description {
+            font-size: 1.25rem;
+            color: #6B7280;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .video-container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 120, 255, 0.1);
+            border: 1px solid rgba(0, 120, 255, 0.1);
+            margin-bottom: 60px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .back-to-marketplace {
+            text-align: center;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            color: #0078FF;
+            padding: 16px 32px;
+            border: 2px solid #0078FF;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: #0078FF;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 120, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                padding: 40px 20px;
+            }
+
+            .demo-title {
+                font-size: 2.5rem;
+            }
+
+            .demo-description {
+                font-size: 1.125rem;
+            }
+
+            .video-container {
+                padding: 24px;
+            }
+
+            header {
+                padding: 0 20px;
+            }
+
+            nav {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div class="demo-container">
+        <div class="demo-header">
+            <div class="demo-badge">Educational Video</div>
+            <h1 class="demo-title">Learn About AOMs</h1>
+            <p class="demo-description">
+                Discover how Autonomous Optimization Models revolutionize business operations through intelligent automation and real-time decision making.
+            </p>
+        </div>
+
+        <div class="video-container">
+            <div class="video-wrapper">
+                <video controls preload="metadata" poster="">
+                    <source src="videos/AOMS.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="back-to-marketplace">
+            <a href="marketplace.html" class="btn-back">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+                Back to Marketplace
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <div id="footer-placeholder"></div>
+    <script src="js/shared-components.js"></script>
+    <script>
+        setActiveNavigation('nav-marketplace');
+    </script></body>
+</html>

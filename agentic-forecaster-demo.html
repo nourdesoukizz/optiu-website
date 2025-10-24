@@ -510,25 +510,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <img src="optiu2.png" alt="OptiU Logo" class="header-logo">
-        <nav>
-            <a href="landing-page.html">Home</a>
-            <a href="opti.html">Opti</a>
-            <a href="marketplace.html" class="active">Marketplace</a>
-            <a href="aom-adoption.html">AOM Adoption</a>
-            <a href="pricing.html">Pricing</a>
-        </nav>
-        <div class="header-right">
-            <button class="dark-mode-toggle" onclick="toggleDarkMode()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            </button>
-            <a href="mailto:webmaster@optiu.ai?subject=Contact%20Sales&body=Hi%2C%0A%0AI%27m%20interested%20in%20learning%20more%20about%20OptiU.%20Please%20contact%20me.%0A%0AThank%20you!" class="chat-button">Contact Sales</a>
-        </div>
-    </header>
-
+    <div id="header-placeholder"></div>
     <main>
         <section class="video-section">
             <div class="container">
@@ -568,6 +550,7 @@
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
                         <circle cx="4" cy="4" r="2"/>
+
                     </svg>
                 </a>
                 <a href="#" class="social-link" aria-label="GitHub">
@@ -582,19 +565,25 @@
                 </a>
             </div>
         </div>
-    </footer>
-
-    <script src="js/opti-chatbot.js"></script>
+    <div id="footer-placeholder"></div>
     <script>
+        // Dark Mode Toggle
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         }
 
-        // Load dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-        }
+        // Check for saved dark mode preference on load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+    <script src="js/opti-chatbot.js"></script>
+    <script src="js/shared-components.js"></script>
+    <script>
+        setActiveNavigation('nav-opti');
     </script>
 </body>
 </html>

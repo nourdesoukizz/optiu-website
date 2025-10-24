@@ -1,0 +1,47 @@
+<header>
+    <img src="optiu2.png" alt="OptiU Logo" class="header-logo">
+    <nav>
+        <a href="landing-page.html" id="nav-home">Home</a>
+        <a href="opti.html" id="nav-opti">Opti</a>
+        <a href="marketplace.html" id="nav-marketplace">Marketplace</a>
+        <a href="aom-adoption.html" id="nav-aom-adoption">AOM Adoption</a>
+        <a href="pricing.html" id="nav-pricing">Pricing</a>
+    </nav>
+    <div class="header-right">
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+        <a href="chat.html" class="chat-button">Try Opti!</a>
+    </div>
+</header>
+
+<script>
+// Function to set active navigation item
+function setActiveNav(activeId) {
+    // Remove active class from all nav items
+    document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Add active class to specified item
+    const activeElement = document.getElementById(activeId);
+    if (activeElement) {
+        activeElement.classList.add('active');
+    }
+}
+
+// Dark mode toggle function
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
+
+// Load dark mode preference
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+});
+</script>

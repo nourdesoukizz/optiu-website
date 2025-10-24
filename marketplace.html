@@ -14,7 +14,7 @@
         body {
             padding-bottom: 120px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #F8FAFC 0%, #EBF8FF 100%);
+            background: #F8FAFC;
             line-height: 1.6;
             color: #1A1A1A;
             min-height: 100vh;
@@ -34,7 +34,7 @@
         }
 
         .header-logo {
-            height: 32px;
+            height: 48px;
             width: auto;
         }
 
@@ -136,9 +136,7 @@
         }
 
         body.dark-mode .marketplace-title {
-            background: linear-gradient(135deg, #60A5FA 0%, #818CF8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #F1F5F9 !important;
         }
 
         body.dark-mode .product-card {
@@ -171,99 +169,150 @@
             background: linear-gradient(135deg, #9333EA 0%, #C084FC 100%);
         }
 
+        body.dark-mode .filter-title {
+            color: #F3F4F6;
+        }
+
+        body.dark-mode .filter-option {
+            background: transparent;
+            color: #D1D5DB;
+        }
+
+        body.dark-mode .filter-option:hover {
+            color: #F3F4F6;
+        }
+
+        body.dark-mode .filter-option.active {
+            background: #3B82F6;
+            color: white;
+        }
+
         .marketplace-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 40px 120px;
+            padding: 24px 40px 120px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            align-items: start;
         }
 
         .marketplace-main {
             width: 100%;
         }
 
+        .filter-panel {
+            background: transparent;
+            padding: 0;
+            border: none;
+            height: fit-content;
+            margin-top: 355px;
+        }
+
+        .filter-section {
+            margin-bottom: 32px;
+        }
+
+        .filter-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .filter-option {
+            background: transparent;
+            border: none;
+            padding: 12px 0;
+            font-size: 14px;
+            font-weight: 400;
+            color: #374151;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .filter-option:hover {
+            color: #111827;
+        }
+
+        .filter-option.active {
+            background: #2563EB;
+            color: white;
+            border-radius: 6px;
+            padding: 8px 16px;
+        }
+
         .products-grid {
             flex: 1;
             min-width: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 32px;
-            margin-top: 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .products-count {
+            color: #6B7280;
+            font-size: 14px;
+            margin-bottom: 24px;
         }
 
         .marketplace-header {
             text-align: center;
-            margin-bottom: 48px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 32px;
-            padding: 64px 48px;
+            margin-bottom: 32px;
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            border-radius: 0;
+            padding: 40px 0 32px 0;
             position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.06),
-                0 1px 1px rgba(0, 0, 0, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            overflow: visible;
+            box-shadow: none;
             grid-column: 1 / -1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .marketplace-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(147, 197, 253, 0.03) 100%);
-            z-index: 1;
-        }
 
         .marketplace-title {
-            font-size: 3.25rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 16px;
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            color: #111827 !important;
+            margin-bottom: 12px;
             position: relative;
             z-index: 2;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.01em;
+            line-height: 1.2 !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
         }
 
         .marketplace-subtitle {
-            font-size: 1.125rem;
-            color: #374151;
+            font-size: 1rem;
+            color: #6B7280;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 24px auto;
             line-height: 1.6;
             font-weight: 400;
             position: relative;
             z-index: 2;
         }
 
-        .marketplace-header-accent {
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
-            border-radius: 34px;
-            z-index: 0;
-            opacity: 0.1;
-        }
-
-        .marketplace-header-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            z-index: 1;
-        }
 
         .poc-request-btn {
             background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #C084FC 100%);
@@ -275,13 +324,16 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-top: 24px;
             position: relative;
             z-index: 2;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
             background-size: 200% 200%;
             animation: gradientShift 3s ease-in-out infinite;
+            height: 56px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .poc-request-btn::before {
@@ -307,6 +359,29 @@
 
         .poc-request-btn:active {
             transform: translateY(-1px) scale(1.02);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2563EB;
+            padding: 14px 28px;
+            border: 2px solid #2563EB;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: 56px;
+        }
+
+        .btn-secondary:hover {
+            background: #2563EB;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
         }
 
         @keyframes gradientShift {
@@ -1543,7 +1618,7 @@
             }
 
             .marketplace-title {
-                font-size: 2.75rem;
+                font-size: 2.5rem !important;
             }
 
             .marketplace-header-glow {
@@ -1586,7 +1661,7 @@
             }
 
             .marketplace-title {
-                font-size: 2.25rem;
+                font-size: 2rem !important;
             }
 
             .marketplace-subtitle {
@@ -1618,533 +1693,360 @@
     <link rel="stylesheet" href="css/opti-chatbot.css">
 </head>
 <body>
-    <header>
-        <img src="optiu2.png" alt="OptiU Logo" class="header-logo">
-        <nav>
-            <a href="landing-page.html">Home</a>
-            <a href="opti.html">Opti</a>
-            <a href="marketplace.html" class="active">Marketplace</a>
-            <a href="aom-adoption.html">AOM Adoption</a>
-            <a href="pricing.html">Pricing</a>
-        </nav>
-        <div class="header-right">
-            <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            </button>
-            <a href="chat.html" class="chat-button">Try Opti!</a>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
 
     <div class="marketplace-container">
+        <!-- Filter Panel -->
+        <div class="filter-panel">
+            <div class="filter-section">
+                <h3 class="filter-title">By Function</h3>
+                <div class="filter-options">
+                    <button class="filter-option active" data-filter="category" data-value="all">All Functions</button>
+                    <button class="filter-option" data-filter="category" data-value="forecasting">Forecasting & Planning</button>
+                    <button class="filter-option" data-filter="category" data-value="inventory">Inventory & Replenishment</button>
+                    <button class="filter-option" data-filter="category" data-value="allocation">Allocation & Distribution</button>
+                    <button class="filter-option" data-filter="category" data-value="procurement">Procurement & Sourcing</button>
+                    <button class="filter-option" data-filter="category" data-value="scheduling">Scheduling & Execution</button>
+                    <button class="filter-option" data-filter="category" data-value="risk">Risk & Resilience</button>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3 class="filter-title">By Sector</h3>
+                <div class="filter-options">
+                    <button class="filter-option active" data-filter="industry" data-value="all">All Sectors</button>
+                    <button class="filter-option" data-filter="industry" data-value="manufacturing">Manufacturing</button>
+                    <button class="filter-option" data-filter="industry" data-value="retail">Retail</button>
+                    <button class="filter-option" data-filter="industry" data-value="pharma">Pharma</button>
+                    <button class="filter-option" data-filter="industry" data-value="consumer-goods">Consumer Goods</button>
+                    <button class="filter-option" data-filter="industry" data-value="automotive">Automotive</button>
+                    <button class="filter-option" data-filter="industry" data-value="electronics">Electronics</button>
+                    <button class="filter-option" data-filter="industry" data-value="fashion">Fashion & Apparel</button>
+                    <button class="filter-option" data-filter="industry" data-value="industrial">Industrial Equipment</button>
+                    <button class="filter-option" data-filter="industry" data-value="medical">Medical Devices</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Main Content -->
         <div class="marketplace-main">
-            <!-- Products Grid -->
-            <div class="products-grid" id="productsGrid">
             <!-- Header -->
             <div class="marketplace-header">
-                <div class="marketplace-header-accent"></div>
-                <div class="marketplace-header-glow"></div>
                 <h1 class="marketplace-title">AOM Marketplace</h1>
                 <p class="marketplace-subtitle">
                     Ready-made Autonomous Optimization Models for every industry. Pick your optimizer and start transforming your operations today.
                 </p>
-                <button class="poc-request-btn" onclick="openPOCModal()">
-                    Request Free Proof of Concept
-                </button>
+                <div style="display: flex; justify-content: center; align-items: stretch; flex-wrap: wrap; gap: 16px; margin-top: 24px;">
+                    <button class="poc-request-btn" onclick="openPOCModal()">
+                        Request Free Proof of Concept
+                    </button>
+                    <a href="aoms-overview.html" class="btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m22 8-6 4 6 4V8Z"></path>
+                            <rect width="14" height="12" x="2" y="6" rx="2" ry="2"></rect>
+                        </svg>
+                        Learn about AOMs
+                    </a>
+                </div>
             </div>
             
-            <!-- Agentic Forecaster -->
-            <div class="product-card" data-category="forecasting" data-industries="retail,manufacturing,pharma" data-status="available" data-name="agentic forecaster">
-                <div class="product-header">
-                    <div class="product-header-content">
-                        <div class="product-header-top">
-                            <div class="product-icon-box">
-                                <!-- TrendingUp icon -->
-                                <svg class="product-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                    <polyline points="17 6 23 6 23 12"></polyline>
-                                </svg>
-                            </div>
-                            <div class="category-badge">FORECASTING</div>
-                        </div>
-                        <h3 class="product-title">Agentic Forecaster</h3>
-                        <p class="product-subtitle">AI-Powered Demand Prediction with Continuous Learning</p>
-                    </div>
-                </div>
-                
-                <div class="product-content">
-                    <p class="product-description">
-                        Traditional forecasting methods rely on fixed statistical models that cannot adapt to real-time changes in market conditions, product mix, or external factors like promotions and weather. The Agentic Forecaster solves this by autonomously selecting and blending the best forecasting algorithms per SKU, learning continuously from performance feedback, and integrating causal variables to enhance prediction accuracy. It minimizes overstocking, understocking, and waste while improving service levels and profit margins.
-                    </p>
-                    
-                    <div class="product-metric">
-                        <div class="metric-container">
-                            <span class="metric-name">Forecast Accuracy</span>
-                            <span class="metric-value">+15-25%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="industry-tags">
-                        <span class="industry-tag">Retail</span>
-                        <span class="industry-tag">Manufacturing</span>
-                        <span class="industry-tag">Pharma</span>
-                        <span class="industry-tag">+1 more</span>
-                    </div>
-                    
-                    <div class="pricing-section">
-                        <div class="price">$100/month</div>
-                        <div class="trial-info">1 free Proof of concept</div>
-                    </div>
-                    
-                    <div class="product-actions">
-                        <div class="primary-actions">
-                            <a href="https://raf.optiu.ai/login" target="_blank" class="try-live-btn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polygon points="10,8 16,12 10,16"/>
-                                </svg>
-                                Try It Live
-                            </a>
-                            <button class="credentials-btn" onclick="showCredentials('agentic-forecaster')">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                    <circle cx="12" cy="16" r="1"/>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                </svg>
-                                Credentials
-                            </button>
-                        </div>
-                        <div class="secondary-actions">
-<a href="agentic-forecaster-demo.html" class="how-to-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                    <line x1="8" y1="21" x2="16" y2="21"/>
-                                    <line x1="12" y1="17" x2="12" y2="21"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <button onclick="showDataModal('agentic-forecaster')" class="data-module-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <path d="M9 9h6v6H9z"/>
-                                    <path d="M9 3v6"/>
-                                    <path d="M15 9v6"/>
-                                    <path d="M3 9h6"/>
-                                    <path d="M15 15h6"/>
-                                </svg>
-                                Data
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Products Count -->
+            <div class="products-count">Showing 6 products</div>
+            
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+            
 
-            <!-- Smart Replenishment Orchestrator -->
-            <div class="product-card" data-category="inventory" data-industries="retail,manufacturing,pharma" data-status="available" data-name="smart replenishment orchestrator">
-                <div class="product-header">
-                    <div class="product-header-content">
-                        <div class="product-header-top">
-                            <div class="product-icon-box">
-                                <!-- Package icon -->
-                                <svg class="product-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
-                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                                </svg>
-                            </div>
-                            <div class="category-badge">INVENTORY</div>
-                        </div>
-                        <h3 class="product-title">Smart Replenishment Orchestrator</h3>
-                        <p class="product-subtitle">Intelligent Inventory Optimization Across Multi-Echelon Networks</p>
+            <!-- Agentic Forecaster -->
+            <div class="product-card" data-category="forecasting" data-industries="manufacturing,retail,pharma,consumer-goods,automotive,electronics,aerospace,fashion,industrial,medical" data-status="available" data-name="agentic forecaster" style="background: white; border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+                    <div style="background: #DBEAFE; padding: 12px; border-radius: 8px; flex-shrink: 0;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0 0 4px 0;">Agentic Forecaster</h3>
+                        <p style="font-size: 14px; color: #6B7280; margin: 0;">AI-Powered Demand Prediction with Continuous Learning</p>
                     </div>
                 </div>
                 
-                <div class="product-content">
-                    <p class="product-description">
-                        Conventional replenishment systems rely on static reorder rules and batch planning cycles that fail under volatility in demand, production, and transport costs. The Smart Replenishment Orchestrator dynamically determines optimal shipment sources and destinations in real time—balancing inventory, cost, and SLA adherence. It eliminates stockouts, reduces redundant transfers, and ensures network-wide synchronization between plants and distribution centers.
-                    </p>
-                    
-                    <div class="product-metric">
-                        <div class="metric-container">
-                            <span class="metric-name">Replenished Quantity</span>
-                            <span class="metric-value">76%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="industry-tags">
-                        <span class="industry-tag">Retail</span>
-                        <span class="industry-tag">Manufacturing</span>
-                        <span class="industry-tag">Pharma</span>
-                        <span class="industry-tag">+1 more</span>
-                    </div>
-                    
-                    <div class="pricing-section">
-                        <div class="price">$100/month</div>
-                        <div class="trial-info">1 free Proof of concept</div>
-                    </div>
-                    
-                    <div class="product-actions">
-                        <div class="primary-actions">
-                            <a href="https://replenishment-orchestrator-production.up.railway.app/login" target="_blank" class="try-live-btn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polygon points="10,8 16,12 10,16"/>
-                                </svg>
-                                Try It Live
-                            </a>
-                            <button class="credentials-btn" onclick="showCredentials('smart-replenishment-orchestrator')">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                    <circle cx="12" cy="16" r="1"/>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                </svg>
-                                Credentials
-                            </button>
-                        </div>
-                        <div class="secondary-actions">
-<a href="replenishment-orchestrator-demo.html" class="how-to-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                    <line x1="8" y1="21" x2="16" y2="21"/>
-                                    <line x1="12" y1="17" x2="12" y2="21"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <button onclick="showDataModal('smart-replenishment-orchestrator')" class="data-module-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <path d="M9 9h6v6H9z"/>
-                                    <path d="M9 3v6"/>
-                                    <path d="M15 9v6"/>
-                                    <path d="M3 9h6"/>
-                                    <path d="M15 15h6"/>
-                                </svg>
-                                Data
-                            </button>
-                        </div>
-                    </div>
+                <div style="background: #F8FAFC; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Forecasting & Planning</span>
+                </div>
+                
+                <p style="font-size: 14px; color: #4B5563; line-height: 1.5; margin-bottom: 20px;">
+                    Traditional forecasting methods rely on fixed statistical models that cannot adapt to real-time changes in market conditions, product mix, or external factors like promotions and weather. The Agentic Forecaster solves this by autonomously selecting and blending the best forecasting algorithms per SKU, learning continuously from performance feedback, and integrating causal variables to enhance prediction accuracy. It minimizes overstocking, understocking, and waste while improving service levels and profit margins.
+                </p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 12px; background: #F9FAFB; border-radius: 6px;">
+                    <span style="font-size: 14px; color: #374151;">Forecast Accuracy</span>
+                    <span style="font-size: 14px; font-weight: 600; color: #2563EB;">+15-25%</span>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">📊 Retail</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🏭 Manufacturing</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">💊 Pharma</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">+1 more</span>
+                </div>
+                
+                <button onclick="window.location.href='agentic-forecaster-details.html'" style="width: 100%; background: #2563EB; color: white; border: none; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    View Details
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">$100/month</div>
+                    <div style="font-size: 12px; color: #6B7280;">1 free Proof of concept</div>
                 </div>
             </div>
 
             <!-- Smart Allocation Maximizer -->
-            <div class="product-card" data-category="allocation" data-industries="retail,consumer-goods,fashion" data-status="available" data-name="smart allocation maximizer">
-                <div class="product-header">
-                    <div class="product-header-content">
-                        <div class="product-header-top">
-                            <div class="product-icon-box">
-                                <!-- Target icon -->
-                                <svg class="product-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <circle cx="12" cy="12" r="6"></circle>
-                                    <circle cx="12" cy="12" r="2"></circle>
-                                </svg>
-                            </div>
-                            <div class="category-badge">ALLOCATION</div>
-                        </div>
-                        <h3 class="product-title">Smart Allocation Maximizer</h3>
-                        <p class="product-subtitle">Revenue-Optimized Product Distribution Across Channels</p>
+            <div class="product-card" data-category="allocation" data-industries="manufacturing,retail,pharma,consumer-goods,automotive,electronics,aerospace,fashion,industrial,medical" data-status="available" data-name="smart allocation maximizer" style="background: white; border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+                    <div style="background: #DBEAFE; padding: 12px; border-radius: 8px; flex-shrink: 0;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0 0 4px 0;">Smart Allocation Maximizer</h3>
+                        <p style="font-size: 14px; color: #6B7280; margin: 0;">Revenue-Optimized Product Distribution Across Channels</p>
                     </div>
                 </div>
                 
-                <div class="product-content">
-                    <p class="product-description">
-                        In industries with constrained supply or fluctuating demand, allocation plans often fail because customers consume unevenly or price signals change mid-cycle. The Allocation Maximizer dynamically reallocates stock among customers, adjusting based on consumption velocity, storage limits, and pricing trends to maximize margin and service levels.
-                    </p>
-                    
-                    <div class="product-metric">
-                        <div class="metric-container">
-                            <span class="metric-name">Allocated Quantity</span>
-                            <span class="metric-value">432</span>
-                        </div>
-                    </div>
-                    
-                    <div class="industry-tags">
-                        <span class="industry-tag">Retail</span>
-                        <span class="industry-tag">Consumer Goods</span>
-                        <span class="industry-tag">Fashion</span>
-                        <span class="industry-tag">+1 more</span>
-                    </div>
-                    
-                    <div class="pricing-section">
-                        <div class="price">$100/month</div>
-                        <div class="trial-info">1 free Proof of concept</div>
-                    </div>
-                    
-                    <div class="product-actions">
-                        <div class="primary-actions">
-                            <a href="https://web-production-e199.up.railway.app/login" target="_blank" class="try-live-btn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polygon points="10,8 16,12 10,16"/>
-                                </svg>
-                                Try It Live
-                            </a>
-                            <button class="credentials-btn" onclick="showCredentials('smart-allocation-maximizer')">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                    <circle cx="12" cy="16" r="1"/>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                </svg>
-                                Credentials
-                            </button>
-                        </div>
-                        <div class="secondary-actions">
-<a href="allocation-maximizer-demo.html" class="how-to-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                    <line x1="8" y1="21" x2="16" y2="21"/>
-                                    <line x1="12" y1="17" x2="12" y2="21"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <button onclick="showDataModal('smart-allocation-maximizer')" class="data-module-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <path d="M9 9h6v6H9z"/>
-                                    <path d="M9 3v6"/>
-                                    <path d="M15 9v6"/>
-                                    <path d="M3 9h6"/>
-                                    <path d="M15 15h6"/>
-                                </svg>
-                                Data
-                            </button>
-                        </div>
-                    </div>
+                <div style="background: #F8FAFC; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Distribution & Fulfillment</span>
+                </div>
+                
+                <p style="font-size: 14px; color: #4B5563; line-height: 1.5; margin-bottom: 20px;">
+                    In industries with constrained supply or fluctuating demand, allocation plans often fail because customers consume unevenly or price signals change mid-cycle. The Allocation Maximizer dynamically reallocates stock among customers, adjusting based on consumption velocity, storage limits, and pricing trends to maximize margin and service levels.
+                </p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 12px; background: #F9FAFB; border-radius: 6px;">
+                    <span style="font-size: 14px; color: #374151;">Allocated Quantity</span>
+                    <span style="font-size: 14px; font-weight: 600; color: #2563EB;">432</span>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">📦 E-commerce</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🚚 Logistics</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🏪 Retail</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">+2 more</span>
+                </div>
+                
+                <button onclick="window.location.href='smart-allocation-engine-details.html'" style="width: 100%; background: #2563EB; color: white; border: none; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    View Details
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">$100/month</div>
+                    <div style="font-size: 12px; color: #6B7280;">1 free Proof of concept</div>
                 </div>
             </div>
 
-            <!-- PO Lead Time Injector -->
-            <div class="product-card" data-category="supply-chain" data-industries="manufacturing,automotive,electronics" data-status="available" data-name="po lead time injector">
-                <div class="product-header">
-                    <div class="product-header-content">
-                        <div class="product-header-top">
-                            <div class="product-icon-box">
-                                <!-- Clock icon -->
-                                <svg class="product-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                            </div>
-                            <div class="category-badge">SUPPLY CHAIN</div>
-                        </div>
-                        <h3 class="product-title">PO Lead Time Injector</h3>
-                        <p class="product-subtitle">Intelligent Supplier Performance & Delivery Forecasting</p>
+            <!-- Supply Chain Control Tower -->
+            <div class="product-card" data-category="procurement" data-industries="manufacturing,retail,pharma,consumer-goods,automotive,electronics,aerospace,fashion,industrial,medical" data-status="available" data-name="po lead time injector" style="background: white; border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+                    <div style="background: #DBEAFE; padding: 12px; border-radius: 8px; flex-shrink: 0;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m11-11h-6m-6 0H1"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0 0 4px 0;">PO Lead Time Injector</h3>
+                        <p style="font-size: 14px; color: #6B7280; margin: 0;">Intelligent Supplier Performance & Delivery Forecasting</p>
                     </div>
                 </div>
                 
-                <div class="product-content">
-                    <p class="product-description">
-                        Static ERP lead times are outdated and fail to represent real supplier performance, causing late deliveries. The Dynamic Lead Time Injector computes accurate lead times per vendor-SKU using statistical analysis of historical orders, ensuring realistic delivery windows and eliminating downstream chaos.
-                    </p>
-                    
-                    <div class="product-metric">
-                        <div class="metric-container">
-                            <span class="metric-name">Calculated Lead Time</span>
-                            <span class="metric-value" style="color: #EF4444;">+4 days</span>
-                        </div>
-                    </div>
-                    
-                    <div class="industry-tags">
-                        <span class="industry-tag">Manufacturing</span>
-                        <span class="industry-tag">Automotive</span>
-                        <span class="industry-tag">Electronics</span>
-                        <span class="industry-tag">+1 more</span>
-                    </div>
-                    
-                    <div class="pricing-section">
-                        <div class="price">$100/month</div>
-                        <div class="trial-info">1 free Proof of concept</div>
-                    </div>
-                    
-                    <div class="product-actions">
-                        <div class="primary-actions">
-                            <a href="https://scx-po.optiu.ai/login" target="_blank" class="try-live-btn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polygon points="10,8 16,12 10,16"/>
-                                </svg>
-                                Try It Live
-                            </a>
-                            <button class="credentials-btn" onclick="showCredentials('po-lead-time-injector')">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                    <circle cx="12" cy="16" r="1"/>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                </svg>
-                                Credentials
-                            </button>
-                        </div>
-                        <div class="secondary-actions">
-<a href="#" class="how-to-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                    <line x1="8" y1="21" x2="16" y2="21"/>
-                                    <line x1="12" y1="17" x2="12" y2="21"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <button onclick="showDataModal('po-lead-time-injector')" class="data-module-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <path d="M9 9h6v6H9z"/>
-                                    <path d="M9 3v6"/>
-                                    <path d="M15 9v6"/>
-                                    <path d="M3 9h6"/>
-                                    <path d="M15 15h6"/>
-                                </svg>
-                                Data
-                            </button>
-                        </div>
-                    </div>
+                <div style="background: #F8FAFC; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Visibility & Control</span>
+                </div>
+                
+                <p style="font-size: 14px; color: #4B5563; line-height: 1.5; margin-bottom: 20px;">
+                    Static ERP lead times are outdated and fail to represent real supplier performance, causing late deliveries. The Dynamic Lead Time Injector computes accurate lead times per vendor-SKU using statistical analysis of historical orders, ensuring realistic delivery windows and eliminating downstream chaos.
+                </p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 12px; background: #F9FAFB; border-radius: 6px;">
+                    <span style="font-size: 14px; color: #374151;">Calculated Lead Time</span>
+                    <span style="font-size: 14px; font-weight: 600; color: #EF4444;">+4 days</span>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🏭 Manufacturing</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🚢 Shipping</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">✈️ Aerospace</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">+3 more</span>
+                </div>
+                
+                <button onclick="window.location.href='supply-chain-control-tower-details.html'" style="width: 100%; background: #2563EB; color: white; border: none; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    View Details
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">$100/month</div>
+                    <div style="font-size: 12px; color: #6B7280;">1 free Proof of concept</div>
                 </div>
             </div>
 
-            <!-- Configure-to-Promise Scheduler -->
-            <div class="product-card" data-category="production" data-industries="industrial-equipment,medical-devices,electronics" data-status="available" data-name="configure-to-promise scheduler">
-                <div class="product-header">
-                    <div class="product-header-content">
-                        <div class="product-header-top">
-                            <div class="product-icon-box">
-                                <!-- Calendar icon -->
-                                <svg class="product-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
-                            </div>
-                            <div class="category-badge">PRODUCTION</div>
-                        </div>
-                        <h3 class="product-title">Configure-to-Promise Scheduler</h3>
-                        <p class="product-subtitle">Accurate Delivery Promises for Complex Products</p>
+            <!-- Fifth Row: Autonomous Replenishment -->
+            <div class="product-card" data-category="inventory" data-industries="manufacturing,retail,pharma,consumer-goods,automotive,electronics,aerospace,fashion,industrial,medical" data-status="available" data-name="smart replenishment orchestrator" style="background: white; border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+                    <div style="background: #DBEAFE; padding: 12px; border-radius: 8px; flex-shrink: 0;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0 0 4px 0;">Smart Replenishment Orchestrator</h3>
+                        <p style="font-size: 14px; color: #6B7280; margin: 0;">Intelligent Inventory Optimization Across Multi-Echelon Networks</p>
                     </div>
                 </div>
                 
-                <div class="product-content">
-                    <p class="product-description">
-                        In highly configurable, make-to-order (MTO) or engineer-to-order (ETO) environments, planners often overpromise or underdeliver because they lack real-time visibility into component availability and production routing. The CTP Scheduler determines the earliest feasible and most profitable commit date using real-time data on inventory, capacity, lead times, and BOM alternates.
-                    </p>
-                    
-                    <div class="product-metric">
-                        <div class="metric-container">
-                            <span class="metric-name">Requested Delivery Date</span>
-                            <span class="metric-value" style="color: #10B981;">Feasible</span>
-                        </div>
-                    </div>
-                    
-                    <div class="industry-tags">
-                        <span class="industry-tag">Industrial Equipment</span>
-                        <span class="industry-tag">Medical Devices</span>
-                        <span class="industry-tag">Electronics</span>
-                        <span class="industry-tag">+2 more</span>
-                    </div>
-                    
-                    <div class="pricing-section">
-                        <div class="price">$100/month</div>
-                        <div class="trial-info">1 free Proof of concept</div>
-                    </div>
-                    
-                    <div class="product-actions">
-                        <div class="primary-actions">
-                            <a href="https://config-to-promise-production.up.railway.app/login" target="_blank" class="try-live-btn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polygon points="10,8 16,12 10,16"/>
-                                </svg>
-                                Try It Live
-                            </a>
-                            <button class="credentials-btn" onclick="showCredentials('configure-to-promise-scheduler')">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                    <circle cx="12" cy="16" r="1"/>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                </svg>
-                                Credentials
-                            </button>
-                        </div>
-                        <div class="secondary-actions">
-<a href="#" class="how-to-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                    <line x1="8" y1="21" x2="16" y2="21"/>
-                                    <line x1="12" y1="17" x2="12" y2="21"/>
-                                </svg>
-                                Explainer
-                            </a>
-                            <button onclick="showDataModal('configure-to-promise-scheduler')" class="data-module-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <path d="M9 9h6v6H9z"/>
-                                    <path d="M9 3v6"/>
-                                    <path d="M15 9v6"/>
-                                    <path d="M3 9h6"/>
-                                    <path d="M15 15h6"/>
-                                </svg>
-                                Data
-                            </button>
-                        </div>
-                    </div>
+                <div style="background: #F8FAFC; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Inventory Management</span>
+                </div>
+                
+                <p style="font-size: 14px; color: #4B5563; line-height: 1.5; margin-bottom: 20px;">
+                    Conventional replenishment systems rely on static reorder rules and batch planning cycles that fail under volatility in demand, production, and transport costs. The Smart Replenishment Orchestrator dynamically determines optimal shipment sources and destinations in real time—balancing inventory, cost, and SLA adherence. It eliminates stockouts, reduces redundant transfers, and ensures network-wide synchronization between plants and distribution centers.
+                </p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 12px; background: #F9FAFB; border-radius: 6px;">
+                    <span style="font-size: 14px; color: #374151;">Replenished Quantity</span>
+                    <span style="font-size: 14px; font-weight: 600; color: #2563EB;">76%</span>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🏪 Retail</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🍔 Food Service</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">💊 Healthcare</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">+1 more</span>
+                </div>
+                
+                <button onclick="window.location.href='autonomous-replenishment-details.html'" style="width: 100%; background: #2563EB; color: white; border: none; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    View Details
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">$100/month</div>
+                    <div style="font-size: 12px; color: #6B7280;">1 free Proof of concept</div>
                 </div>
             </div>
 
-            <!-- Resilience Optimizer -->
-            <div class="product-card" data-category="resilience" data-industries="manufacturing,pharma,automotive" data-status="coming-soon" data-name="resilience optimizer">
-                <div class="product-header coming-soon">
-                    <div class="product-header-content">
-                        <div class="product-header-top">
-                            <div class="product-icon-box">
-                                <!-- Shield icon -->
-                                <svg class="product-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                            </div>
-                            <div class="category-badge">COMING SOON</div>
-                        </div>
-                        <h3 class="product-title">Resilience Optimizer</h3>
-                        <p class="product-subtitle">Supply Continuity Through Intelligent Risk Mitigation</p>
+            <!-- Sustainability Optimizer -->
+            <div class="product-card" data-category="risk" data-industries="manufacturing,retail,pharma,consumer-goods,automotive,electronics,aerospace,fashion,industrial,medical" data-status="coming-soon" data-name="resilience optimizer" style="background: white; border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+                    <div style="background: #DBEAFE; padding: 12px; border-radius: 8px; flex-shrink: 0;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0 0 4px 0;">Resilience Optimizer</h3>
+                        <p style="font-size: 14px; color: #6B7280; margin: 0;">Supply Continuity Through Intelligent Risk Mitigation</p>
                     </div>
                 </div>
                 
-                <div class="product-content">
-                    <p class="product-description">
-                        Ensure uninterrupted supply continuity by automatically detecting, responding to, and mitigating execution-time plant breakdowns, supplier disruptions, and material shortages.
-                    </p>
-                    
-                    <div class="product-metric">
-                        <div class="metric-container">
-                            <span class="metric-name">Emergency Freight Cost</span>
-                            <span class="metric-value">-30-50%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="industry-tags">
-                        <span class="industry-tag">Manufacturing</span>
-                        <span class="industry-tag">Pharma</span>
-                        <span class="industry-tag">Automotive</span>
-                        <span class="industry-tag">+2 more</span>
-                    </div>
-                    
-                    <div class="pricing-section">
-                        <div class="price">Coming Soon</div>
-                        <div class="trial-info">Be the first to know when it's ready</div>
-                    </div>
-                    
-                    <div class="product-actions">
-                        <div class="primary-actions">
-                            <span class="coming-soon-btn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12 6 12 12 16 14"/>
-                                </svg>
-                                Coming Soon
-                            </span>
-                        </div>
-                    </div>
+                <div style="background: #FEE2E2; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+                    <span style="font-size: 14px; font-weight: 500; color: #DC2626;">COMING SOON</span>
+                </div>
+                
+                <p style="font-size: 14px; color: #4B5563; line-height: 1.5; margin-bottom: 20px;">
+                    Ensure uninterrupted supply continuity by automatically detecting, responding to, and mitigating execution-time plant breakdowns, supplier disruptions, and material shortages.
+                </p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 12px; background: #F9FAFB; border-radius: 6px;">
+                    <span style="font-size: 14px; color: #374151;">Emergency Freight Cost</span>
+                    <span style="font-size: 14px; font-weight: 600; color: #2563EB;">-30-50%</span>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🌍 Global Trade</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🏭 Manufacturing</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">⚡ Energy</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">+2 more</span>
+                </div>
+                
+                <button onclick="alert('Coming Soon - This module is currently in development')" style="width: 100%; background: #9CA3AF; color: white; border: none; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    Coming Soon
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 16px; font-weight: 600; color: #6B7280;">Pricing TBD</div>
+                    <div style="font-size: 12px; color: #6B7280;">Available Q2 2025</div>
                 </div>
             </div>
+
+            <!-- Network Design Optimizer -->
+            <div class="product-card" data-category="scheduling" data-industries="manufacturing,retail,pharma,consumer-goods,automotive,electronics,aerospace,fashion,industrial,medical" data-status="available" data-name="configure-to-promise scheduler" style="background: white; border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+                    <div style="background: #DBEAFE; padding: 12px; border-radius: 8px; flex-shrink: 0;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="18" r="3"></circle>
+                            <circle cx="6" cy="6" r="3"></circle>
+                            <path d="M6 21V9a9 9 0 0 0 9 9"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0 0 4px 0;">Configure-to-Promise Scheduler</h3>
+                        <p style="font-size: 14px; color: #6B7280; margin: 0;">Accurate Delivery Promises for Complex Products</p>
+                    </div>
+                </div>
+                
+                <div style="background: #F8FAFC; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+                    <span style="font-size: 14px; font-weight: 500; color: #374151;">Network Strategy</span>
+                </div>
+                
+                <p style="font-size: 14px; color: #4B5563; line-height: 1.5; margin-bottom: 20px;">
+                    In highly configurable, make-to-order (MTO) or engineer-to-order (ETO) environments, planners often overpromise or underdeliver because they lack real-time visibility into component availability and production routing. The CTP Scheduler determines the earliest feasible and most profitable commit date using real-time data on inventory, capacity, lead times, and BOM alternates.
+                </p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 12px; background: #F9FAFB; border-radius: 6px;">
+                    <span style="font-size: 14px; color: #374151;">Requested Delivery Date</span>
+                    <span style="font-size: 14px; font-weight: 600; color: #10B981;">Feasible</span>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🚚 3PL</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🏢 Enterprise</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">🌐 Distribution</span>
+                    <span style="background: #F3F4F6; color: #374151; padding: 4px 8px; border-radius: 4px; font-size: 12px;">+4 more</span>
+                </div>
+                
+                <button onclick="window.location.href='network-design-optimizer-details.html'" style="width: 100%; background: #2563EB; color: white; border: none; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    View Details
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">$100/month</div>
+                    <div style="font-size: 12px; color: #6B7280;">1 free Proof of concept</div>
+                </div>
+            </div>
+
             </div>
         </div>
     </div>
@@ -2597,20 +2499,41 @@
             // Handle filter option clicks
             filterOptions.forEach(option => {
                 option.addEventListener('click', function() {
-                    const checkbox = this.querySelector('.filter-checkbox');
                     const filterType = this.dataset.filter;
                     const filterValue = this.dataset.value;
                     
-                    // Toggle checkbox
-                    checkbox.classList.toggle('checked');
-                    
-                    // Update active filters
-                    if (checkbox.classList.contains('checked')) {
-                        if (!activeFilters[filterType].includes(filterValue)) {
-                            activeFilters[filterType].push(filterValue);
-                        }
+                    // Handle "All" options
+                    if (filterValue === 'all') {
+                        // Clear all filters for this type
+                        activeFilters[filterType] = [];
+                        
+                        // Remove active class from all buttons in this section
+                        const sectionButtons = this.closest('.filter-section').querySelectorAll('.filter-option');
+                        sectionButtons.forEach(btn => btn.classList.remove('active'));
+                        
+                        // Add active class to "All" button
+                        this.classList.add('active');
                     } else {
-                        activeFilters[filterType] = activeFilters[filterType].filter(val => val !== filterValue);
+                        // Remove active class from "All" button in this section
+                        const allButton = this.closest('.filter-section').querySelector('[data-value="all"]');
+                        if (allButton) allButton.classList.remove('active');
+                        
+                        // Toggle this button
+                        this.classList.toggle('active');
+                        
+                        // Update active filters
+                        if (this.classList.contains('active')) {
+                            if (!activeFilters[filterType].includes(filterValue)) {
+                                activeFilters[filterType].push(filterValue);
+                            }
+                        } else {
+                            activeFilters[filterType] = activeFilters[filterType].filter(val => val !== filterValue);
+                        }
+                        
+                        // If no filters are active, activate "All" button
+                        if (activeFilters[filterType].length === 0 && allButton) {
+                            allButton.classList.add('active');
+                        }
                     }
                     
                     applyFilters();
@@ -3312,6 +3235,14 @@ Best regards`);
             }
         });
 
+    </script>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/shared-components.js"></script>
+    <script>
+        // Set active navigation for marketplace
+        setActiveNavigation('nav-marketplace');
     </script>
     <script src="js/opti-chatbot.js"></script>
 </body>
