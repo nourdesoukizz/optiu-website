@@ -1177,6 +1177,228 @@
             transform: translateY(0) scale(1);
             opacity: 1;
         }
+        
+        /* Chat Widget Popup Content Styles */
+        .opti-chat-header {
+            background: linear-gradient(135deg, #0078FF 0%, #0066DD 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .opti-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .opti-header-logo {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .opti-header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .opti-header-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .opti-header-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .opti-status-dot {
+            width: 6px;
+            height: 6px;
+            background: #00FF88;
+            border-radius: 50%;
+        }
+        
+        .opti-header-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .opti-action-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        
+        .opti-action-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .opti-chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #F8FAFC;
+        }
+        
+        .opti-message {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .opti-message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .opti-bot-avatar {
+            background: linear-gradient(135deg, #0078FF 0%, #0066DD 100%);
+            color: white;
+        }
+        
+        .opti-user-avatar {
+            background: #E5E7EB;
+            color: #6B7280;
+        }
+        
+        .opti-message-content {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.4;
+            max-width: 280px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .opti-chat-input-container {
+            padding: 16px 20px;
+            background: white;
+            border-top: 1px solid #E5E7EB;
+        }
+        
+        .opti-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #F3F4F6;
+            border-radius: 24px;
+            padding: 8px 16px;
+        }
+        
+        .opti-chat-input {
+            flex: 1;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 14px;
+            color: #1F2937;
+        }
+        
+        .opti-chat-input::placeholder {
+            color: #9CA3AF;
+        }
+        
+        .opti-input-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .opti-attach-btn, .opti-send-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .opti-attach-btn {
+            background: transparent;
+            color: #6B7280;
+        }
+        
+        .opti-attach-btn:hover {
+            background: #E5E7EB;
+        }
+        
+        .opti-send-btn {
+            background: #0078FF;
+            color: white;
+        }
+        
+        .opti-send-btn:hover {
+            background: #0066DD;
+        }
+        
+        .opti-typing-indicator {
+            padding: 20px;
+            display: none;
+        }
+        
+        .opti-typing-indicator.opti-show {
+            display: block;
+        }
+        
+        .opti-typing-dots {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .opti-typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #9CA3AF;
+            border-radius: 50%;
+            animation: optiTyping 1.4s infinite ease-in-out;
+        }
+        
+        .opti-typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .opti-typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes optiTyping {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
     </style>
 </head>
 <body>
