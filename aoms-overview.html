@@ -518,7 +518,9 @@
             gap: 12px;
             background: #F3F4F6;
             border-radius: 24px;
-            padding: 8px 16px;
+            padding: 12px 20px;
+            width: 100%;
+            min-height: 48px;
         }
         
         .opti-chat-input {
@@ -526,10 +528,11 @@
             border: none;
             background: none;
             outline: none;
-            font-size: 14px;
+            font-size: 15px;
             color: #1F2937;
             line-height: 1.5;
-            padding: 8px 0;
+            padding: 10px 0;
+            min-height: 24px;
         }
         
         .opti-chat-input::placeholder {
@@ -605,6 +608,110 @@
         @keyframes optiTyping {
             0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
             30% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        /* Footer */
+        footer {
+            position: sticky;
+            bottom: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .footer-brand-text {
+            font-size: 15px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #0066DD 0%, #0052CC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px;
+        }
+        .footer-copyright {
+            color: #A0AEC0;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .social-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: #A0AEC0;
+            text-decoration: none;
+        }
+        .social-link:hover {
+            background: rgba(0, 102, 221, 0.1);
+            color: #0066DD;
+            transform: translateY(-2px);
+        }
+        .social-link svg {
+            position: relative;
+            z-index: 1;
+            width: 18px;
+            height: 18px;
+        }
+        .footer-pulse {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #00FF88;
+            border-radius: 50%;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+        /* Dark Mode Footer */
+        body.dark-mode footer {
+            position: sticky;
+            bottom: 0;
+            z-index: 50;
+            background: rgba(31, 41, 55, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        body.dark-mode .footer-copyright {
+            color: #6B7280;
+        }
+        body.dark-mode .social-link {
+            color: #6B7280;
+        }
+        body.dark-mode .social-link:hover {
+            background: rgba(96, 165, 250, 0.1);
+            color: #60A5FA;
         }
     </style>
     <link rel="stylesheet" href="css/opti-chatbot.css">
